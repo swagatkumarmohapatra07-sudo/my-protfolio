@@ -180,4 +180,87 @@ body {
         transform: translateX(-50%); /* Center it on small screens */
     }
 }
+/* Projects Section Styling */
+.projects {
+    min-height: 100vh;
+    padding: 100px 10% 40px;
+    background: var(--bg-color);
+}
 
+.heading {
+    font-size: 45px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.heading span {
+    color: var(--main-color);
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Glassmorphism Project Card */
+.project-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(15px);
+    transition: 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 350px; /* Uniform height */
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--main-color);
+    box-shadow: 0 0 20px var(--main-color);
+}
+
+.project-info h4 {
+    font-size: 24px;
+    color: var(--main-color);
+    margin-bottom: 15px;
+}
+
+.project-info p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.project-info a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.project-info a:hover {
+    color: var(--main-color);
+}
+
+/* Scroll Down Animation */
+.scroll-down {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    color: var(--main-color);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+    40% {transform: translateY(-10px) translateX(-50%);}
+    60% {transform: translateY(-5px) translateX(-50%);}
+}
