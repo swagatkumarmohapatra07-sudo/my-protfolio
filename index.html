@@ -10,10 +10,11 @@
 <body>
 
     <div class="planets-container">
-    <div class="planet jupiter"></div>
-    <div class="planet mars"></div>
-    <div class="planet moon"></div>
-</div>
+        <div class="planet jupiter"></div>
+        <div class="planet mars"></div>
+        <div class="planet moon"></div>
+        <div class="planet saturn"><div class="ring"></div></div>
+    </div>
 
     <div class="stars-container">
         <span class="star"></span>
@@ -29,6 +30,7 @@
         <nav class="navbar">
             <a href="#home" class="active">Home</a>
             <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -44,9 +46,9 @@
         <div class="home-content">
             <h1>Hi, I'm Swagat Mohapatra</h1>
             <h3>B.Tech in CSE (Data Science)</h3>
-            <p>I build intelligent digital solutions. Check out "Smart Campus Care," my comprehensive campus management system.</p>
+            <p>I specialize in building intelligent digital solutions. Check out my latest college project, "Smart Campus," which streamlines campus management for Einstein Academy.</p>
             <div class="btn-box">
-                <a href="#projects" class="btn">View Projects</a>
+                <a href="#projects" class="btn">View Work</a>
                 <a href="mailto:swagatkumarmohapatra07@gmail.com" class="btn">Hire Me</a>
             </div>
         </div>
@@ -60,14 +62,26 @@
         <div class="projects-container">
             <div class="project-card">
                 <h4>Smart Campus Care</h4>
-                <p>Maintenance and student query management for EATM.</p>
-                <a href="https://smartcampus-care.vercel.app/index.html" target="_blank" class="visit-link"><i class='bx bx-link-external'></i> Live Demo</a>
+                <p>A maintenance and student query management system for Einstein Academy of Technology and Management.</p>
+                <a href="https://smartcampus-care.vercel.app/index.html" target="_blank" class="btn"><i class='bx bx-link-external'></i> Live Demo</a>
             </div>
             <div class="project-card">
-                <h4>Data Science Model</h4>
-                <p>Coming soon: Predictive analytics and data visualization.</p>
-                <a href="#" class="visit-link"><i class='bx bx-code-alt'></i> GitHub</a>
+                <h4>Data Science Project</h4>
+                <p>Upcoming: Advanced predictive analytics model focused on visualizing complex datasets.</p>
+                <a href="#" class="btn"><i class='bx bx-code-alt'></i> GitHub</a>
             </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2 class="heading">Technical <span>Skills</span></h2>
+        <div class="skills-row">
+            <div class="skill-card"><i class='bx bxl-python'></i><p>Python</p></div>
+            <div class="skill-card"><i class='bx bxl-java'></i><p>Java</p></div>
+            <div class="skill-card"><i class='bx bxl-c-plus-plus'></i><p>C Language</p></div>
+            <div class="skill-card"><i class='bx bxl-html5'></i><p>HTML</p></div>
+            <div class="skill-card"><i class='bx bxl-css3'></i><p>CSS</p></div>
+            <div class="skill-card"><i class='bx bxl-javascript'></i><p>JavaScript</p></div>
         </div>
     </section>
 
@@ -78,11 +92,18 @@
                 <input type="text" placeholder="Full Name" required>
                 <input type="email" placeholder="Email Address" required>
             </div>
+            <div class="input-box">
+                <input type="number" placeholder="Mobile Number" required>
+                <input type="text" placeholder="Subject">
+            </div>
             <textarea cols="30" rows="10" placeholder="Your Message" required></textarea>
             <input type="submit" value="Send Message" class="btn">
         </form>
     </section>
 
-    <script src="script.js"></script>
+    <footer style="text-align: center; padding: 40px; opacity: 0.6; font-size: 14px;">
+        <p>&copy; 2026 Swagat Mohapatra | All Rights Reserved.</p>
+    </footer>
+
 </body>
 </html>
