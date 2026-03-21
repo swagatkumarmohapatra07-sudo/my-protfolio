@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio | [Your Name]</title>
+    <title>Swagat Mohapatra | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+
+    <div class="stars-container">
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+    </div>
+
     <header class="header">
         <a href="#" class="logo">Swagat.</a>
         <nav class="navbar">
@@ -17,22 +29,22 @@
         </nav>
     </header>
 
+    <div class="social-glass-bar">
+        <a href="https://www.linkedin.com/in/swagat-kumar-mohapatra-517170281/" target="_blank"><i class='bx bxl-linkedin'></i></a>
+        <a href="https://github.com/swagatkumarmohapatra07-sudo" target="_blank"><i class='bx bxl-github'></i></a>
+        <a href="mailto:swagatkumarmohapatra07@gmail.com"><i class='bx bxl-gmail'></i></a>
+        <a href="https://www.instagram.com/i_am_santu_07" target="_blank"><i class='bx bxl-instagram'></i></a>
+    </div>
+
     <section id="home" class="home">
         <div class="home-content">
             <h1>Hi, I'm Swagat Mohapatra</h1>
             <h3>B.Tech in CSE (Data Science)</h3>
-            <p>I specialize in building intelligent digital solutions. Explore my work below.</p>
+            <p>I specialize in building intelligent digital solutions. Check out my latest college project, "Smart Campus," which streamlines campus management for Einstein Academy.</p>
             <div class="btn-box">
-                <a href="#projects">View Projects</a>
-                <a href="mailto:swagatkumarmohapatra07@gmail.com">Hire Me</a>
+                <a href="#projects" class="btn">View Work</a>
+                <a href="mailto:swagatkumarmohapatra07@gmail.com" class="btn">Hire Me</a>
             </div>
-        </div>
-
-        <div class="social-glass-bar">
-            <a href="https://www.linkedin.com/in/swagat-kumar-mohapatra-517170281/" target="_blank"><i class='bx bxl-linkedin'></i></a>
-            <a href="https://github.com/swagatkumarmohapatra07-sudo" target="_blank"><i class='bx bxl-github'></i></a>
-            <a href="mailto:swagatkumarmohapatra07@gmail.com"><i class='bx bxl-gmail'></i></a>
-            <a href="https://www.instagram.com/i_am_santu_07" target="_blank"><i class='bx bxl-instagram'></i></a>
         </div>
 
         <div class="scroll-down">
@@ -42,24 +54,40 @@
 
     <section id="projects" class="projects">
         <h2 class="heading">My <span>Projects</span></h2>
-        
         <div class="projects-container">
             <div class="project-card">
                 <div class="project-info">
                     <h4>Smart Campus Care</h4>
                     <p>A comprehensive maintenance and student query management system for Einstein Academy of Technology and Management.</p>
-                    <a href="https://smartcampus-care.vercel.app/index.html" target="_blank"><i class='bx bx-link-external'></i> Visit Site</a>
+                    <a href="https://smartcampus-care.vercel.app/index.html" target="_blank" class="visit-btn"><i class='bx bx-link-external'></i> Live Demo</a>
                 </div>
             </div>
-
             <div class="project-card">
                 <div class="project-info">
                     <h4>Data Science Project</h4>
-                    <p>Coming soon: An intelligent model focused on predictive analytics and data visualization.</p>
-                    <a href="#"><i class='bx bx-code-alt'></i> GitHub</a>
+                    <p>Coming soon: An advanced predictive analytics model designed to visualize complex datasets.</p>
+                    <a href="#" class="visit-btn"><i class='bx bx-code-alt'></i> Repo</a>
                 </div>
             </div>
         </div>
     </section>
+
+    <section id="contact" class="contact">
+        <h2 class="heading">Contact <span>Me!</span></h2>
+        <form action="mailto:swagatkumarmohapatra07@gmail.com" method="POST" enctype="text/plain">
+            <div class="input-box">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-box">
+                <input type="number" name="mobile" placeholder="Mobile Number" required>
+                <input type="text" name="subject" placeholder="Email Subject">
+            </div>
+            <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send Message" class="btn">
+        </form>
+    </section>
+
+    <script src="script.js"></script>
 </body>
-</html> 
+</html>
