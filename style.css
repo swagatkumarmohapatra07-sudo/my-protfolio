@@ -171,30 +171,60 @@ body {
 .btn-box a:hover::before {
     width: 100%;
 }
-/* Glassmorphism Social Bar */
+/* Vertical Aesthetic Social Bar */
 .social-glass-bar {
-    position: absolute;
-    bottom: 40px;
-    left: 10%;
+    position: fixed; /* Stays in place while scrolling */
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%); /* Perfectly centered vertically */
     display: flex;
-    gap: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 15px 25px;
+    flex-direction: column; /* Stack icons vertically */
+    gap: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 25px 15px;
     border-radius: 50px;
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
 }
 
 .social-glass-bar a {
-    font-size: 24px;
+    font-size: 26px;
     color: var(--text-color);
-    transition: .3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Hover Effects */
 .social-glass-bar a:hover {
     color: var(--main-color);
-    transform: translateY(-5px); /* Gentle float effect on hover */
+    transform: scale(1.3) translateX(5px); /* Pops out slightly to the right */
+    filter: drop-shadow(0 0 8px var(--main-color));
+}
+
+/* Adjustments for Mobile Screens */
+@media (max-width: 768px) {
+    .social-glass-bar {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        top: auto;
+        transform: none;
+        flex-direction: row; /* Go back to horizontal on phone */
+        width: 100%;
+        justify-content: center;
+        border-radius: 20px 20px 0 0; /* Rounded top corners only */
+        padding: 15px;
+        gap: 40px;
+        background: rgba(8, 27, 41, 0.9); /* More solid for readability on small screens */
+    }
+
+    .social-glass-bar a:hover {
+        transform: scale(1.2) translateY(-5px); /* Pops upward on mobile */
+    }
 }
 
 /* Ensure icons scale on mobile */
