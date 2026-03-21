@@ -1,4 +1,16 @@
-// 1. Neural Data Link Cursor Logic
+// 1. Dazzling Stars Generator
+const dazzle = document.querySelector(".dazzle-container");
+for (let i = 0; i < 50; i++) {
+    const star = document.createElement("div");
+    star.className = "dazzle-star";
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.width = star.style.height = `${Math.random() * 2 + 1}px`;
+    star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+    dazzle.appendChild(star);
+}
+
+// 2. Neural Link Cursor Logic (FIXED)
 const mainNode = document.querySelector(".cursor-node-main");
 const trailNode = document.querySelector(".cursor-node-trail");
 const line = document.querySelector(".cursor-line");
@@ -21,64 +33,71 @@ function animateLink() {
 }
 animateLink();
 
-// 2. Typing Animation
-new Typed('.typing-text', {
-    strings: ['Data Science Student', 'Web Developer', 'Problem Solver', 'Tech Enthusiast'],
-    typeSpeed: 100, backSpeed: 60, backDelay: 1000, loop: true
-});
-
-// 3. Scroll Reveal
-ScrollReveal({ distance: '80px', duration: 2000, delay: 200 });
-ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
-ScrollReveal().reveal('.project-card, .skill-card, .contact form', { origin: 'bottom' });
-
-// 4. Section Highlighting
-let sections = document.querySelectorAll('section');
-let navLinks = document.querySelectorAll('header nav a');
+// 3. UI Interactions (Header & BackToTop)
 window.onscroll = () => {
+    const header = document.querySelector('header');
+    header.classList.toggle('sticky', window.scrollY > 100);
+
+    const backToTop = document.querySelector('#backToTop');
+    backToTop.classList.toggle('active', window.scrollY > 500);
+
+    // Section Highlighting
+    let sections = document.querySelectorAll('section');
+    let navLinks = document.querySelectorAll('header nav a');
     sections.forEach(sec => {
         let top = window.scrollY;
         let offset = sec.offsetTop - 150;
-        let id = sec.getAttribute('id');
         if(top >= offset && top < offset + sec.offsetHeight) {
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+                document.querySelector('header nav a[href*=' + sec.getAttribute('id') + ']').classList.add('active');
             });
         }
     });
 };
 
-// 5. Vanilla Tilt Init
-VanillaTilt.init(document.querySelectorAll(".project-card, .skill-card, .home-content, .contact form"), {
-    max: 10, speed: 400, glare: true, "max-glare": 0.2,
+// 4. Libraries Init
+new Typed('.typing-text', {
+    strings: ['Data Scientist', 'Web Developer', 'ML Specialist', 'Santu'],
+    typeSpeed: 100, backSpeed: 60, loop: true
 });
 
-// 6. Formspree AJAX Submission
+ScrollReveal({ distance: '80px', duration: 2000, delay: 200 });
+ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
+ScrollReveal().reveal('.project-card, .skill-card, .contact form, .timeline-item', { origin: 'bottom' });
+
+VanillaTilt.init(document.querySelectorAll(".project-card, .skill-card, .home-content, .timeline-content"), {
+    max: 10, speed: 400, glare: true, "max-glare": 0.1,
+});
+
+// 5. Contact Form Logic (FIXED)
 var form = document.getElementById("my-form");
-async function handleSubmit(event) {
+form.addEventListener("submit", async function(event) {
   event.preventDefault();
   var status = document.getElementById("my-form-status");
-  var data = new FormData(event.target);
+  var btn = document.getElementById("submit-btn");
+
   status.innerHTML = "Sending...";
   status.className = "";
+  btn.disabled = true;
 
   fetch(event.target.action, {
-    method: form.method,
-    body: data,
+    method: 'POST',
+    body: new FormData(event.target),
     headers: { 'Accept': 'application/json' }
   }).then(response => {
+    btn.disabled = false;
     if (response.ok) {
       status.innerHTML = "Message sent successfully to Swagat!";
       status.classList.add("success");
       form.reset();
     } else {
-      status.innerHTML = "Oops! Problem submitting form";
+      status.innerHTML = "Oops! Problem sending message.";
       status.classList.add("error");
     }
   }).catch(error => {
-    status.innerHTML = "Oops! Problem submitting form";
+    btn.disabled = false;
+    status.innerHTML = "Oops! Problem sending message.";
     status.classList.add("error");
   });
-}
-form.addEventListener("submit", handleSubmit);
+});
