@@ -6,8 +6,13 @@
     <title>Swagat Mohapatra | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body>
+
+    <div class="cursor-node-main"></div>
+    <div class="cursor-node-trail"></div>
+    <svg class="cursor-svg"><line class="cursor-line"></line></svg>
 
     <div class="planets-container">
         <div class="planet jupiter"></div>
@@ -17,12 +22,9 @@
     </div>
 
     <div class="stars-container">
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
+        <span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span>
     </div>
 
     <header class="header">
@@ -43,32 +45,32 @@
     </div>
 
     <section id="home" class="home">
-        <div class="home-content">
+        <div class="home-content" data-tilt>
             <h1>Hi, I'm Swagat Mohapatra</h1>
-            <h3>B.Tech in CSE (Data Science)</h3>
-            <p>I specialize in building intelligent digital solutions. Check out my latest college project, "Smart Campus," which streamlines campus management for Einstein Academy.</p>
+            <h3>I'm a <span class="typing-text"></span></h3>
+            <p>B.Tech in CSE (Data Science). I specialize in building intelligent digital solutions, interactive web interfaces, and data-driven applications.</p>
             <div class="btn-box">
                 <a href="#projects" class="btn">View Work</a>
-                <a href="mailto:swagatkumarmohapatra07@gmail.com" class="btn">Hire Me</a>
+                <a href="#contact" class="btn">Hire Me</a>
             </div>
         </div>
-        <div class="scroll-down">
-            <a href="#projects"><i class='bx bx-chevron-down'></i></a>
-        </div>
+        <div class="scroll-down"><a href="#projects"><i class='bx bx-chevron-down'></i></a></div>
     </section>
 
     <section id="projects" class="projects">
         <h2 class="heading">My <span>Projects</span></h2>
         <div class="projects-container">
-            <div class="project-card">
+            <div class="project-card" data-tilt>
+                <div class="project-img-box"><i class='bx bx-buildings'></i></div>
                 <h4>Smart Campus Care</h4>
-                <p>A maintenance and student query management system for Einstein Academy of Technology and Management.</p>
-                <a href="https://smartcampus-care.vercel.app/index.html" target="_blank" class="btn"><i class='bx bx-link-external'></i> Live Demo</a>
+                <p>A maintenance and student query management system built for Einstein Academy (EATM).</p>
+                <a href="https://smartcampus-care.vercel.app/index.html" target="_blank" class="btn">Live Demo</a>
             </div>
-            <div class="project-card">
-                <h4>Data Science Project</h4>
-                <p>Upcoming: Advanced predictive analytics model focused on visualizing complex datasets.</p>
-                <a href="#" class="btn"><i class='bx bx-code-alt'></i> GitHub</a>
+            <div class="project-card" data-tilt>
+                <div class="project-img-box"><i class='bx bx-data'></i></div>
+                <h4>Data Science Model</h4>
+                <p>Upcoming: Advanced predictive analytics project focused on data cleaning and visualization.</p>
+                <a href="#" class="btn">GitHub</a>
             </div>
         </div>
     </section>
@@ -76,34 +78,38 @@
     <section id="skills" class="skills">
         <h2 class="heading">Technical <span>Skills</span></h2>
         <div class="skills-row">
-            <div class="skill-card"><i class='bx bxl-python'></i><p>Python</p></div>
-            <div class="skill-card"><i class='bx bxl-java'></i><p>Java</p></div>
-            <div class="skill-card"><i class='bx bxl-c-plus-plus'></i><p>C Language</p></div>
-            <div class="skill-card"><i class='bx bxl-html5'></i><p>HTML</p></div>
-            <div class="skill-card"><i class='bx bxl-css3'></i><p>CSS</p></div>
-            <div class="skill-card"><i class='bx bxl-javascript'></i><p>JavaScript</p></div>
+            <div class="skill-card" data-tilt><i class='bx bxl-python'></i><p>Python</p><div class="bar"><span style="width: 90%;"></span></div></div>
+            <div class="skill-card" data-tilt><i class='bx bxl-java'></i><p>Java</p><div class="bar"><span style="width: 85%;"></span></div></div>
+            <div class="skill-card" data-tilt><i class='bx bxl-c-plus-plus'></i><p>C Language</p><div class="bar"><span style="width: 80%;"></span></div></div>
+            <div class="skill-card" data-tilt><i class='bx bxl-html5'></i><p>HTML5</p><div class="bar"><span style="width: 95%;"></span></div></div>
+            <div class="skill-card" data-tilt><i class='bx bxl-css3'></i><p>CSS3</p><div class="bar"><span style="width: 90%;"></span></div></div>
+            <div class="skill-card" data-tilt><i class='bx bxl-javascript'></i><p>JavaScript</p><div class="bar"><span style="width: 75%;"></span></div></div>
         </div>
     </section>
 
     <section id="contact" class="contact">
         <h2 class="heading">Contact <span>Me!</span></h2>
-        <form action="mailto:swagatkumarmohapatra07@gmail.com" method="POST" enctype="text/plain">
-            <div class="input-box">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-            </div>
-            <div class="input-box">
-                <input type="number" placeholder="Mobile Number" required>
-                <input type="text" placeholder="Subject">
-            </div>
-            <textarea cols="30" rows="10" placeholder="Your Message" required></textarea>
-            <input type="submit" value="Send Message" class="btn">
-        </form>
+        <div class="contact-container">
+            <form id="my-form" action="https://formspree.io/f/YOUR_ID" method="POST" data-tilt>
+                <div class="input-group">
+                    <div class="input-field">
+                        <input type="text" name="name" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                </div>
+                <div class="textarea-field">
+                    <textarea name="message" cols="30" rows="8" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" id="submit-btn" class="btn">Send Message</button>
+                <p id="my-form-status"></p>
+            </form>
+        </div>
     </section>
 
-    <footer style="text-align: center; padding: 40px; opacity: 0.6; font-size: 14px;">
-        <p>&copy; 2026 Swagat Mohapatra | All Rights Reserved.</p>
-    </footer>
-
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
