@@ -59,48 +59,73 @@ body {
     color: var(--main-color);
 }
 
+/* Refined Hero Section */
 .home {
     height: 100vh;
     display: flex;
-    align-items: center;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
     padding: 0 10%;
-    /* Gradient background to make glass pop */
-    background: linear-gradient(45deg, #081b29, #112e42);
+    background: radial-gradient(circle at center, #112e42 0%, #081b29 100%);
+    text-align: center;      /* Centers text inside the glass card */
 }
 
 .home-content {
-    max-width: 600px;
-    /* Glassmorphism Card for Text */
-    background: rgba(255, 255, 255, 0.05);
-    padding: 40px;
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
+    max-width: 800px; /* Wider for better centering */
+    background: rgba(255, 255, 255, 0.03);
+    padding: 60px;
+    border-radius: 30px;
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    /* Entrance Animation */
+    animation: fadeInScale 1s ease-out;
 }
 
+/* Glow effect for your name */
 .home-content h1 {
-    font-size: 56px;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 62px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-color);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
 }
 
 .home-content h3 {
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 34px;
+    font-weight: 600;
     color: var(--main-color);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
 }
 
 .home-content p {
-    font-size: 16px;
-    margin: 20px 0 40px;
+    font-size: 18px;
+    margin: 0 auto 40px;
+    max-width: 600px; /* Keeps text readable when centered */
+    opacity: 0.8;
 }
 
+/* Center the button box */
 .btn-box {
     display: flex;
-    justify-content: space-between;
-    width: 345px;
-    height: 50px;
+    justify-content: center;
+    gap: 20px;
+    width: 100%; /* Spans full width of container */
+}
+
+/* New Entrance Animation Keyframes */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .btn-box a {
