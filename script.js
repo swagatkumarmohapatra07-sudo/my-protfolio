@@ -72,7 +72,7 @@ window.onscroll = () => {
 
 // 5. Library Inits
 new Typed('.typing-text', {
-    strings: ['Data Scientist', 'Web Developer', 'Problem Solver', 'Santu'],
+    strings: ['Data Analyst .', 'Full-Stack Web Developer .', 'Problem Solver .', 'Quick learner .','Data'],
     typeSpeed: 100, backSpeed: 60, loop: true
 });
 
