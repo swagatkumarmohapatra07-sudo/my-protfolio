@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swagat Mohapatra | Data Science Portfolio</title>
+    <title>Swagat Kumar Mohapatra | Full-stack Developer</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://unpkg.com/scrollreveal"></script>
@@ -28,6 +28,15 @@
 
     <header class="header" id="header">
         <a href="#" class="logo">Swagat<span>.</span></a>
+        
+        <div class="header-data">
+            <span id="dynamic-greeting">Hello!</span>
+            <div class="clock-wrap">
+                <span id="live-clock">00:00:00</span>
+                <i class='bx bx-moon' id="theme-toggle"></i>
+            </div>
+        </div>
+
         <nav class="navbar">
             <a href="#home" class="active">Home</a>
             <a href="#projects">Projects</a>
@@ -40,7 +49,7 @@
         <div class="bx bx-menu" id="menu-icon"></div>
     </header>
 
-    <a href="skm.pdf" download class="resume-float">
+    <a href="skm.pdf" target="_blank" class="resume-float">
         <i class='bx bxs-file-pdf'></i> <span>Resume</span>
     </a>
 
@@ -56,27 +65,25 @@
             <div class="home-content">
                 <h1>Hi, I'm Swagat Mohapatra</h1>
                 <h3>I'm a <span class="typing-text"></span></h3>
-                <p>B.Tech in CSE (Data Science). I specialize in data-driven storytelling and high-performance web development. Let's build the future together.</p>
-                 <div class="btn-box">
+                <p>B.Tech in CSE (Data Science). I specialize in data-driven storytelling and high-performance web development[cite: 23]. Let's build the future together.</p>
+                <div class="btn-box">
                     <a href="#projects" class="btn">Explore Work</a>
                     <a href="#contact" class="btn btn-outline">Hire Me</a>
                 </div>
             </div>
-             <div class="hero-features">
+            <div class="hero-features">
                 <div class="feature-card" onclick="location.href='#education'">
                     <i class='bx bxs-graduation'></i>
                     <h4>Education</h4>
-                    <p>B.Tech in CSE (DS)</p>
+                    <p>B.Tech CSE (DS)</p>
                 </div>
-                <div class="feature-card" onclick="location.href='#services'">
-                    <i class='bx bxs-briefcase'></i>
-                    <h4>Services</h4>
-                    <p>Web & Data Solutions</p>
+                <div class="feature-card" onclick="window.open('skm.pdf', '_blank')">
+                    <i class='bx bxs-file-pdf'></i>
+                    <h4>Resume</h4>
+                    <p>View Credentials</p>
                 </div>
             </div>
         </div>
-
-           
         <div class="scroll-down"><a href="#projects"><i class='bx bx-chevron-down'></i></a></div>
     </section>
 
@@ -92,7 +99,7 @@
             <div class="project-card">
                 <div class="project-icon"><i class='bx bx-stats'></i></div>
                 <h4>Predictive Analytics</h4>
-                <p>Advanced data modeling and visualization for institutional datasets .</p>
+                <p>Advanced data modeling and visualization for institutional datasets.</p>
                 <a href="#" class="glow-btn">GitHub Repo</a>
             </div>
         </div>
@@ -107,25 +114,19 @@
                     <h4>Degree Pursuit</h4>
                     <p>Studying CSE (Data Science) with a focus on AI/ML at EATM.</p>
                 </div>
-                <div class="timeline-item right">
-                <div class="timeline-content">
-                    <span class="date">2024-25 </span>
-                    <h4>1st year</h4>
-                    <p>in 1st semister got "8.84" SGPA & in 2nd semister got "8.91" SGPA .</p>
-                </div>
             </div>
             <div class="timeline-item right">
                 <div class="timeline-content">
-                    <span class="date">2025-26 </span>
-                    <h4>2nd year</h4>
-                    <p>in 3rd semister got "9.18" SGPA .</p>
+                    <span class="date">2024-25</span>
+                    <h4>1st Year Milestone</h4>
+                    <p>Achieved 8.84 SGPA in 1st Semester & 8.91 SGPA in 2nd Semester.</p>
                 </div>
             </div>
-            <div class="timeline-item right">
+            <div class="timeline-item left">
                 <div class="timeline-content">
-                    <span class="date">2026 Feb</span>
-                    <h4>Project Milestone</h4>
-                    <p>Completed "Smart Campus Care," streamlining institutional support.</p>
+                    <span class="date">2025-26</span>
+                    <h4>2nd Year Progress</h4>
+                    <p>Secured a 9.18 SGPA in the 3rd Semester.</p>
                 </div>
             </div>
         </div>
@@ -133,44 +134,54 @@
 
     <section id="skills" class="skills">
         <h2 class="heading">Technical <span>Stack</span></h2>
-        <div class="skills-row">
-            <div class="skill-card"><i class='bx bxl-python'></i><p>Python</p><div class="bar"><span style="width: 90%;"></span></div></div>
-            <div class="skill-card"><i class='bx bxl-c'></i><p>C</p><div class="bar"><span style="width: 90%;"></span></div></div>
-            <div class="skill-card"><i class='bx bxl-java'></i><p>Java</p><div class="bar"><span style="width: 85%;"></span></div></div>
-            <div class="skill-card"><i class='bx bxl-html5'></i><p>HTML</p><div class="bar"><span style="width: 55%;"></span></div></div>
-            <div class="skill-card"><i class='bx bxl-css3'></i><p>CSS</p><div class="bar"><span style="width: 50%;"></span></div></div>
-            <div class="skill-card"><i class='bx bxl-javascript'></i><p>JS</p><div class="bar"><span style="width: 55%;"></span></div></div>
-            <div class="skill-card"><i class='bx bxl-postgresql'></i><p>SQL</p><div class="bar"><span style="width: 20%;"></span></div></div>
+        <div class="skills-wrapper">
+            <div class="skill-category-box">
+                <h3 class="skill-label"><i class='bx bx-code-alt'></i> Programming</h3>
+                <div class="skills-row">
+                    <div class="skill-card"><i class='bx bxl-python'></i><p>Python</p><div class="bar"><span style="width: 90%;"></span></div></div>
+                    <div class="skill-card"><i class='bx bxl-java'></i><p>Java</p><div class="bar"><span style="width: 85%;"></span></div></div>
+                    <div class="skill-card"><i class='bx bxl-c-plus-plus'></i><p>C Language</p><div class="bar"><span style="width: 90%;"></span></div></div>
+                </div>
+            </div>
+            <div class="skill-category-box">
+                <h3 class="skill-label"><i class='bx bx-layout'></i> Frontend</h3>
+                <div class="skills-row">
+                    <div class="skill-card"><i class='bx bxl-html5'></i><p>HTML</p><div class="bar"><span style="width: 55%;"></span></div></div>
+                    <div class="skill-card"><i class='bx bxl-css3'></i><p>CSS</p><div class="bar"><span style="width: 50%;"></span></div></div>
+                    <div class="skill-card"><i class='bx bxl-javascript'></i><p>JavaScript</p><div class="bar"><span style="width: 55%;"></span></div></div>
+                </div>
+            </div>
+            <div class="skill-category-box">
+                <h3 class="skill-label"><i class='bx bx-wrench'></i> Backend & Tools</h3>
+                <div class="skills-row">
+                    <div class="skill-card"><i class='bx bxl-postgresql'></i><p>SQL</p><div class="bar"><span style="width: 20%;"></span></div></div>
+                    <div class="skill-card"><i class='bx bxl-git'></i><p>Git</p><div class="bar"><span style="width: 50%;"></span></div></div>
+                    <div class="skill-card"><i class='bx bxl-github'></i><p>GitHub</p><div class="bar"><span style="width: 75%;"></span></div></div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="education" class="education">
         <h2 class="heading">My <span>Education</span></h2>
-         <div class="edu-container">
+        <div class="edu-container">
+            <div class="edu-card">
+                <i class='bx bxs-graduation'></i>
+                <h3>B.Tech CSE (DS)</h3>
+                <p>Einstein Academy of Technology and Management </p>
+                <span>Current SGPA: 9.18 </span>
+            </div>
+            <div class="edu-card">
+                <i class='bx bxs-book-bookmark'></i>
+                <h3>+2 Science</h3>
+                <p>CHSE, Odisha  | Result: 60% </p>
+                <span>2022 - 2024 </span>
+            </div>
             <div class="edu-card">
                 <i class='bx bxs-school'></i>
                 <h3>Matriculation</h3>
-                <p> Board of Secondary Education (BSE) ,odisha</p>
-                <span>2022</span>
-            </div>
-        </div>
-
-         <div class="edu-container">
-            <div class="edu-card">
-                <i class='bx bxs-school'></i>
-                <h3>+2 science</h3>
-                <p>Council of Higher Secondary Education(CHSE) ,Odisha</p>
-                <span>2022 - 2024</span>
-            </div>
-        </div>
-
-
-        <div class="edu-container">
-            <div class="edu-card">
-                <i class='bx bxs-school'></i>
-                <h3>B.Tech in CSE (Data Science)</h3>
-                <p>Einstein Academy of Technology and Management</p>
-                <span>2024 - 2028 (Expected)</span>
+                <p>BSE, Odisha  | Result: 78.66% </p>
+                <span>2022 </span>
             </div>
         </div>
     </section>
@@ -209,7 +220,7 @@
     </section>
 
     <footer class="footer">
-        <p>&copy; 2026 Swagat Mohapatra | Bhubaneswar, India</p>
+        <p>&copy; 2026 Swagat Mohapatra [cite: 22, 40] | Bhubaneswar, India</p>
     </footer>
 
     <a href="#home" class="back-to-top" id="backToTop"><i class='bx bxs-rocket'></i></a>
