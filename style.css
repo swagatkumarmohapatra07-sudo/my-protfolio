@@ -334,25 +334,55 @@ section { min-height: 100vh; padding: 120px 10% 80px; position: relative; }
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
+    /* Section & Typography Scaling */
+    section { padding: 100px 5% 80px; min-height: auto; }
+    .home-content { padding: 30px 15px; border-radius: 30px; }
+    .home-content h1 { font-size: 38px; text-shadow: 0 0 15px rgba(0, 242, 254, 0.4); margin-bottom: 10px; }
+    .home-content h3 { font-size: 22px; margin-bottom: 20px; }
+    .home-content p { font-size: 15px; margin-bottom: 30px; }
+    .heading { font-size: 32px; margin-bottom: 30px; }
+
+    /* Timeline Adjustments */
     .timeline::after { left: 30px; }
     .timeline-item { width: 100%; padding-left: 70px; padding-right: 10px; }
     .timeline-item.left, .timeline-item.right { left: 0; }
     .timeline-item::after, .timeline-item.right::after { left: 18px; }
 
     body { cursor: auto !important; }
-    header { padding: 15px 5%; }
+    header { padding: 15px 5%; background: rgba(4, 8, 20, 0.8); backdrop-filter: blur(15px); }
     .header-data { display: none; }
-    #menu-icon { display: block; }
+    #menu-icon { display: block; font-size: 2.2rem; }
+
+    /* Glassmorphic Navbar */
     .navbar { 
-        position: absolute; top: 100%; left: 0; width: 100%; padding: 1rem 5%; 
-        background: var(--bg-color); border-bottom: 2px solid var(--main-color); display: none; 
+        position: absolute; top: 100%; left: 0; width: 100%; padding: 1.5rem 5%; 
+        background: rgba(4, 8, 20, 0.9); backdrop-filter: blur(25px); 
+        border-bottom: 1px solid var(--border-color); display: none; 
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
-    .navbar.active { display: block; }
-    .navbar a { display: block; font-size: 1.5rem; margin: 2rem 0; }
-    .social-glass-bar, .planets-container, .cursor-svg, .resume-float span { display: none; }
-    .input-group { flex-direction: column; gap: 0; }
-    .home-wrapper { flex-direction: column; }
-    .feature-card { width: 100%; }
+    .navbar.active { display: block; animation: slideDown 0.4s ease forwards; }
+    .navbar a { display: block; font-size: 1.2rem; margin: 1.5rem 0; text-align: center; }
+
+    /* Revive Planetary Background */
+    .planets-container { display: block; opacity: 0.3; transform: scale(0.5); transform-origin: top center; pointer-events: none; }
+    
+    /* iOS-style Bottom Social Dock */
+    .social-glass-bar { 
+        display: flex; flex-direction: row; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+        top: auto; width: 85%; max-width: 350px; justify-content: space-around; padding: 15px 20px; 
+        background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); 
+        border-radius: 40px; border: 1px solid var(--border-color); box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .social-glass-bar a { font-size: 22px; }
+    .resume-float { display: none !important; } /* Hidden on mobile to avoid clutter */
+
+    .cursor-svg, .cursor-node-main, .cursor-node-trail { display: none !important; }
+    .home-wrapper { flex-direction: column; gap: 30px; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* --- Animations --- */
