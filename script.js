@@ -59,31 +59,6 @@ if (dazzle) {
     }
 }
 
-// 5. Neural Link Cursor Logic (Desktop Only)
-const mainNode = document.querySelector(".cursor-node-main");
-const trailNode = document.querySelector(".cursor-node-trail");
-const line = document.querySelector(".cursor-line");
-let mX = 0, mY = 0, tX = 0, tY = 0;
-
-if (window.innerWidth > 768 && mainNode) {
-    window.addEventListener("mousemove", (e) => {
-        mX = e.clientX; mY = e.clientY;
-        mainNode.style.left = `${mX}px`;
-        mainNode.style.top = `${mY}px`;
-    });
-
-    function animateCursor() {
-        tX += (mX - tX) * 0.15;
-        tY += (mY - tY) * 0.15;
-        trailNode.style.left = `${tX}px`;
-        trailNode.style.top = `${tY}px`;
-        line.setAttribute("x1", mX); line.setAttribute("y1", mY);
-        line.setAttribute("x2", tX); line.setAttribute("y2", tY);
-        requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-}
-
 // 6. Scrolling UI Logic (Sticky Header & Active Links)
 window.onscroll = () => {
     const header = document.querySelector('header');
@@ -206,13 +181,12 @@ for (let i = 0; i < starCount; i++) {
     const y = Math.random() * 100;
     const duration = Math.random() * 3 + 2;
 
-    // Decide if it's a Big or Small star (20% chance for Big)
     if (Math.random() > 0.8) {
-        star.className = "star large";
+        star.className = "bg-star large";
         const size = Math.random() * 3 + 3; // 3px to 6px
         star.style.width = star.style.height = `${size}px`;
     } else {
-        star.className = "star small";
+        star.className = "bg-star small";
         const size = Math.random() * 2 + 1; // 1px to 3px
         star.style.width = star.style.height = `${size}px`;
     }
@@ -237,9 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
             mouseX = e.clientX;
             mouseY = e.clientY;
 
-            // Instantly move the main point
-            mainNode.style.left = mouseX + "px";
-            mainNode.style.top = mouseY + "px";
+            // Instantly move the main point using GPU acceleration
+            mainNode.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
         });
 
         function animateCursor() {
@@ -248,8 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
             trailY += (mouseY - trailY) * 0.15;
 
             if (trailNode) {
-                trailNode.style.left = trailX + "px";
-                trailNode.style.top = trailY + "px";
+                trailNode.style.transform = `translate3d(calc(${trailX}px - 50%), calc(${trailY}px - 50%), 0)`;
             }
 
             // Draw the connecting line
