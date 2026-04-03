@@ -364,7 +364,7 @@ section { min-height: 100vh; padding: 120px 10% 80px; position: relative; }
     .navbar a { display: block; font-size: 1.2rem; margin: 1.5rem 0; text-align: center; }
 
     /* Revive Planetary Background */
-    .planets-container { display: block; opacity: 0.5; transform: none; pointer-events: none; }
+    .planets-container { display: block; opacity: 0.25; filter: blur(8px); transform: none; pointer-events: none; }
     .jupiter { width: 140px; height: 140px; top: 8%; right: -30px; }
     .moon { width: 45px; height: 45px; top: 25%; left: 5%; }
     .saturn { width: 60px; height: 60px; top: 55%; right: 10%; }
