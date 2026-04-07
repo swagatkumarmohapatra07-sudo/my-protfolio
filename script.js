@@ -45,19 +45,7 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock(); // Initial call
 
-// 4. Dazzling Stars Generator
-const dazzle = document.querySelector(".dazzle-container");
-if (dazzle) {
-    for (let i = 0; i < 50; i++) {
-        const star = document.createElement("div");
-        star.className = "dazzle-star";
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
-        star.style.width = star.style.height = `${Math.random() * 2 + 1}px`;
-        star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
-        dazzle.appendChild(star);
-    }
-}
+
 
 // 6. Scrolling UI Logic (Sticky Header & Active Links)
 window.onscroll = () => {
@@ -170,33 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Tech Clock & Typing logic remains same...
 });
-const starField = document.getElementById("star-field");
-const starCount = 120; // Total stars
 
-for (let i = 0; i < starCount; i++) {
-    const star = document.createElement("div");
-    
-    // Random Position
-    const x = Math.random() * 100;
-    const y = Math.random() * 100;
-    const duration = Math.random() * 3 + 2;
-
-    if (Math.random() > 0.8) {
-        star.className = "bg-star large";
-        const size = Math.random() * 3 + 3; // 3px to 6px
-        star.style.width = star.style.height = `${size}px`;
-    } else {
-        star.className = "bg-star small";
-        const size = Math.random() * 2 + 1; // 1px to 3px
-        star.style.width = star.style.height = `${size}px`;
-    }
-
-    star.style.left = `${x}%`;
-    star.style.top = `${y}%`;
-    star.style.setProperty('--duration', `${duration}s`);
-    
-    starField.appendChild(star);
-}
 document.addEventListener('DOMContentLoaded', () => {
     const mainNode = document.querySelector(".cursor-node-main");
     const trailNode = document.querySelector(".cursor-node-trail");
@@ -236,4 +198,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         animateCursor();
     }
+});
+
+// --- Statistics Counter Animation ---
+document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 100; // Lower is slower
+
+    const startCounters = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const isDecimal = counter.getAttribute('data-decimal') === 'true';
+                const prefix = counter.getAttribute('data-prefix') || '';
+                const suffix = counter.getAttribute('data-suffix') || '';
+                
+                const updateCount = () => {
+                    // Extract current numeric value from text
+                    let currentText = counter.innerText.replace(/[^0-9.]/g, '');
+                    const count = parseFloat(currentText) || 0;
+                    
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        let current = count + inc;
+                        if (isDecimal) {
+                            counter.innerText = prefix + Math.min(current, target).toFixed(2) + suffix;
+                        } else {
+                            counter.innerText = prefix + Math.ceil(current) + suffix;
+                        }
+                        setTimeout(updateCount, 15);
+                    } else {
+                        counter.innerText = prefix + target + suffix;
+                    }
+                };
+                updateCount();
+                observer.unobserve(counter); // Only animate once
+            }
+        });
+    };
+
+    const counterObserver = new IntersectionObserver(startCounters, {
+        root: null,
+        threshold: 0.5 // Trigger when 50% visible
+    });
+
+    counters.forEach(counter => {
+        counterObserver.observe(counter);
+    });
 });

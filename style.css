@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
 
 /* --- Theme Variables --- */
 :root {
-    --bg-color: #040814;
-    --second-bg-color: #0b1120;
-    --text-color: #eef2f6;
+    --bg-color: #030712;
+    --second-bg-color: #0c111d;
+    --text-color: #f1f5f9;
     --main-color: #00f2fe;
-    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-bg: rgba(255, 255, 255, 0.02);
     --border-color: rgba(0, 242, 254, 0.15);
 }
 
@@ -32,8 +32,19 @@
     font-family: 'Poppins', sans-serif; 
 }
 
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-color); border-left: 1px solid var(--border-color); }
+::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #0088cc; }
+
 body { 
-    background: var(--bg-color); 
+    background-color: var(--bg-color); 
+    background-image: 
+        linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
     color: var(--text-color); 
     overflow-x: hidden; 
     cursor: none !important; 
@@ -79,76 +90,6 @@ body {
     display: none !important;
 }
 
-/* Ensure background stars don't block the cursor */
-.stars-container {
-    z-index: -10; /* Deep background */
-}
-
-/* --- Space Background --- */
-.planets-container, .stars-container { position: fixed; width: 100%; height: 100vh; pointer-events: none; z-index: -1; }
-.dazzle-container {
-    position: fixed; width: 100%; height: 100vh; pointer-events: none; z-index: -1;
-    background: radial-gradient(circle at 15% 50%, rgba(0, 242, 254, 0.05), transparent 40%),
-                radial-gradient(circle at 85% 30%, rgba(162, 0, 255, 0.05), transparent 40%);
-}
-.planet { position: absolute; border-radius: 50%; animation-timing-function: ease-in-out; }
-.jupiter { 
-    width: 320px; height: 320px; 
-    top: -5%; right: -5%; 
-    background: radial-gradient(circle at 30% 30%, #ffe0b2, #ffb74d, #e65100, #3e2723);
-    box-shadow: inset -25px -25px 60px rgba(0, 0, 0, 0.8), 0 0 60px rgba(255, 183, 77, 0.2);
-    animation: floatJupiter 30s infinite alternate; 
-}
-.mars { 
-    width: 130px; height: 130px; 
-    bottom: 15%; left: 8%; 
-    background: radial-gradient(circle at 30% 30%, #ff8a65, #e64a19, #bf360c, #212121);
-    box-shadow: inset -15px -15px 30px rgba(0, 0, 0, 0.8), 0 0 40px rgba(230, 74, 25, 0.3);
-    animation: floatMars 28s infinite alternate; 
-}
-.saturn { 
-    width: 100px; height: 100px; 
-    top: 55%; right: 15%; 
-    background: radial-gradient(circle at 30% 30%, #fff9c4, #fbc02d, #f57f17, #3e2723); 
-    box-shadow: inset -10px -10px 25px rgba(0, 0, 0, 0.8), 0 0 35px rgba(251, 192, 45, 0.3);
-    animation: floatSaturn 40s infinite alternate; 
-}
-.saturn .ring { 
-    position: absolute; top: 50%; left: 50%; 
-    width: 240px; height: 240px; 
-    border: 15px solid rgba(251, 192, 45, 0.25); 
-    border-radius: 50%; 
-    transform: translate(-50%, -50%) rotateX(75deg) rotateY(15deg); 
-    box-shadow: 0 0 25px rgba(251, 192, 45, 0.3), inset 0 0 25px rgba(251, 192, 45, 0.3);
-}
-.moon {
-    width: 70px; height: 70px;
-    top: 25%; left: 20%;
-    background: radial-gradient(circle at 30% 30%, #ffffff, #cfd8dc, #90a4ae, #263238);
-    box-shadow: inset -8px -8px 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(207, 216, 220, 0.4);
-    animation: floatMoon 22s infinite alternate;
-}
-/* Twinkling Stars Background */
-#star-field { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; }
-.bg-star, .dazzle-star {
-    position: absolute;
-    background: #fff;
-    border-radius: 50%;
-    animation: twinkle var(--duration, 3s) infinite alternate ease-in-out;
-    will-change: opacity, transform;
-}
-.bg-star.large { box-shadow: 0 0 10px #fff, 0 0 20px var(--main-color); }
-.bg-star.small { box-shadow: 0 0 5px #fff; opacity: 0.8; }
-.dazzle-star { box-shadow: 0 0 8px var(--main-color); opacity: 0.8; }
-
-@keyframes twinkle {
-    0% { opacity: 0.2; transform: scale(0.6); }
-    100% { opacity: 1; transform: scale(1.2); }
-}
-
-/* Shooting Stars */
-.star { position: absolute; width: 2px; height: 2px; background: #fff; animation: meteor 4s linear infinite; }
-.star::before { content: ''; position: absolute; width: 200px; height: 1px; background: linear-gradient(90deg, #fff, transparent); }
 
 /* --- Header / Task Bar --- */
 header { 
@@ -159,9 +100,9 @@ header {
 header.sticky { background: var(--bg-color); backdrop-filter: blur(15px); padding: 15px 10%; border-bottom: 1px solid var(--border-color); }
 
 .header-data { display: flex; flex-direction: column; align-items: flex-end; margin-right: 20px; }
-#dynamic-greeting { font-size: 12px; text-transform: uppercase; color: var(--main-color); letter-spacing: 1px; }
+#dynamic-greeting { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; color: var(--main-color); letter-spacing: 1px; }
 .clock-wrap { display: flex; align-items: center; gap: 15px; }
-#live-clock { font-size: 16px; font-weight: 700; color: var(--text-color); }
+#live-clock { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: var(--text-color); }
 #theme-toggle { font-size: 22px; cursor: pointer; color: var(--main-color); transition: 0.3s; }
 
 .logo { font-size: 28px; font-weight: 700; color: var(--text-color); }
@@ -186,19 +127,19 @@ section { min-height: 100vh; padding: 120px 10% 80px; position: relative; }
 .home-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 1000px; text-align: center; }
 .home-content { padding: 40px; max-width: 800px; display: flex; flex-direction: column; align-items: center; }
 .home-content h1 { font-size: 65px; font-weight: 800; line-height: 1.2; text-shadow: 0 0 30px rgba(0, 242, 254, 0.4); margin-bottom: 15px; letter-spacing: 1px; }
-.home-content h3 { font-size: 30px; color: var(--main-color); margin: 0 0 25px 0; font-weight: 500; text-shadow: 0 0 15px rgba(0, 242, 254, 0.3); font-style: italic; }
-.home-content h3 .typing-text { font-family: 'Poppins', sans-serif; font-style: normal; color: var(--text-color); font-weight: 700; text-shadow: none; border-bottom: 3px solid var(--main-color); padding-bottom: 2px; }
+.home-content h3 { font-size: 30px; color: var(--main-color); margin: 0 0 25px 0; font-weight: 500; text-shadow: 0 0 15px rgba(0, 242, 254, 0.3); }
+.home-content h3 .typing-text { font-family: 'JetBrains Mono', monospace; font-style: normal; color: var(--text-color); font-weight: 700; text-shadow: none; border-bottom: 2px solid var(--main-color); padding-bottom: 2px; }
 .home-content p { font-size: 18px; color: #cbd5e1; line-height: 1.8; margin-bottom: 45px; max-width: 600px; }
 
 /* --- Buttons --- */
-.btn { display: inline-block; padding: 12px 28px; background: var(--main-color); color: #fff; border-radius: 10px; font-weight: 700; transition: .4s; cursor: pointer; }
+.btn { display: inline-block; padding: 12px 28px; background: var(--main-color); color: #000; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700; transition: .4s; cursor: pointer; }
 .btn-outline { background: transparent; border: 2px solid var(--main-color); color: var(--main-color); margin-left: 10px; }
 .btn:hover { background: #fff; color: #000; box-shadow: 0 0 20px var(--main-color); }
 
 /* --- Glow Button (Projects) --- */
 .glow-btn {
     display: inline-block; padding: 10px 25px; background: transparent; color: var(--main-color);
-    border: 2px solid var(--main-color); border-radius: 8px; font-size: 14px; font-weight: 600;
+    border: 2px solid var(--main-color); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
     text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; transition: 0.5s; cursor: pointer;
 }
 .glow-btn:hover {
@@ -219,7 +160,7 @@ section { min-height: 100vh; padding: 120px 10% 80px; position: relative; }
 .timeline-content { background: var(--glass-bg); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); position: relative; text-align: left; transition: 0.4s; backdrop-filter: blur(15px); }
 .timeline-item:hover .timeline-content { border-color: var(--main-color); transform: translateY(-5px); box-shadow: 0 0 30px var(--border-color); }
 
-.timeline-content .date { display: inline-block; padding: 5px 15px; background: rgba(0, 242, 254, 0.1); color: var(--main-color); border-radius: 20px; font-size: 14px; font-weight: 600; margin-bottom: 15px; border: 1px solid var(--main-color); }
+.timeline-content .date { font-family: 'JetBrains Mono', monospace; display: inline-block; padding: 5px 15px; background: rgba(0, 242, 254, 0.1); color: var(--main-color); border-radius: 4px; font-size: 13px; font-weight: 600; margin-bottom: 15px; border: 1px solid var(--main-color); }
 .timeline-content h4 { font-size: 24px; color: var(--text-color); margin-bottom: 10px; font-weight: 600; }
 .timeline-content p { font-size: 15px; color: #cbd5e1; line-height: 1.6; }
 
@@ -230,10 +171,11 @@ section { min-height: 100vh; padding: 120px 10% 80px; position: relative; }
 /* --- Grid Systems --- */
 .projects-container, .skills-row, .services-container, .edu-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 .project-card, .skill-card, .service-card, .edu-card { 
-    background: var(--glass-bg); padding: 40px; border-radius: 30px; border: 1px solid var(--border-color); 
+    background: var(--glass-bg); padding: 40px; border-radius: 8px; border: 1px solid var(--border-color); 
+    border-bottom: 3px solid transparent;
     text-align: center; transition: .5s; display: flex; flex-direction: column; align-items: center;
 }
-.project-card:hover, .skill-card:hover, .service-card:hover, .edu-card:hover { transform: translateY(-10px); border-color: var(--main-color); box-shadow: 0 0 30px var(--border-color); }
+.project-card:hover, .skill-card:hover, .service-card:hover, .edu-card:hover { transform: translateY(-10px); border-color: var(--main-color); border-bottom: 3px solid var(--main-color); box-shadow: 0 0 30px var(--border-color); }
 
 .bar { width: 100%; height: 8px; background: rgba(0, 0, 0, 0.1); border-radius: 10px; margin-top: 20px; position: relative; overflow: hidden; }
 .bar span { position: absolute; height: 100%; left: 0; background: var(--main-color); box-shadow: 0 0 10px var(--main-color); border-radius: 10px; }
@@ -263,7 +205,7 @@ section { min-height: 100vh; padding: 120px 10% 80px; position: relative; }
 .glass-form {
     background: var(--glass-bg);
     padding: 50px;
-    border-radius: 30px;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
     max-width: 800px;
     width: 100%;
@@ -289,7 +231,7 @@ section { min-height: 100vh; padding: 120px 10% 80px; position: relative; }
     width: 100%;
     background: rgba(255, 255, 255, 0.05);
     padding: 18px;
-    border-radius: 15px;
+    border-radius: 8px;
     color: var(--text-color);
     border: 1px solid var(--border-color);
     font-size: 15px;
@@ -325,6 +267,22 @@ section { min-height: 100vh; padding: 120px 10% 80px; position: relative; }
         padding: 30px 20px;
     }
 }
+
+/* --- Tech Marquee --- */
+.tech-marquee { width: 100%; overflow: hidden; background: rgba(0, 242, 254, 0.05); padding: 15px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); white-space: nowrap; position: relative; }
+.marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
+.marquee-content span { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: var(--main-color); margin: 0 40px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
+
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-33.33%); } }
+
+/* --- Statistics Counter --- */
+.stats { padding: 80px 10%; background: linear-gradient(180deg, var(--bg-color) 0%, rgba(0, 242, 254, 0.02) 100%); }
+.stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+.stat-box { background: var(--glass-bg); padding: 40px 20px; border-radius: 8px; border: 1px solid var(--border-color); border-bottom: 3px solid transparent; transition: 0.4s; }
+.stat-box:hover { border-color: var(--main-color); border-bottom: 3px solid var(--main-color); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 242, 254, 0.1); }
+.stat-box i { font-size: 40px; color: var(--main-color); margin-bottom: 15px; }
+.stat-box h3 { font-family: 'JetBrains Mono', monospace; font-size: 45px; font-weight: 800; color: var(--text-color); margin-bottom: 5px; text-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
+.stat-box p { font-size: 15px; color: #cbd5e1; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
 
 /* --- Footer --- */
 .footer { text-align: center; padding: 40px; opacity: 0.5; border-top: 1px solid var(--border-color); }
@@ -363,14 +321,7 @@ section { min-height: 100vh; padding: 120px 10% 80px; position: relative; }
     .navbar.active { display: block; animation: slideDown 0.4s ease forwards; }
     .navbar a { display: block; font-size: 1.2rem; margin: 1.5rem 0; text-align: center; }
 
-    /* Revive Planetary Background */
-    .planets-container { display: block; opacity: 0.25; filter: blur(8px); transform: none; pointer-events: none; }
-    .jupiter { width: 140px; height: 140px; top: 8%; right: -30px; }
-    .moon { width: 45px; height: 45px; top: 25%; left: 5%; }
-    .saturn { width: 60px; height: 60px; top: 55%; right: 10%; }
-    .saturn .ring { width: 120px; height: 120px; border-width: 8px; }
-    .mars { width: 70px; height: 70px; bottom: auto; top: 80%; left: -10px; }
-    
+
     /* Social Icons at bottom for Mobile */
     .social-glass-bar { 
         position: static; display: flex; flex-direction: row; justify-content: center; gap: 20px; 
@@ -393,24 +344,7 @@ section { min-height: 100vh; padding: 120px 10% 80px; position: relative; }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Animations --- */
-@keyframes floatJupiter { 
-    0% { transform: translate(0, 0) rotate(0deg); } 
-    100% { transform: translate(-100px, 80px) rotate(15deg) scale(1.05); } 
-}
-@keyframes floatMars { 
-    0% { transform: translate(0, 0) rotate(0deg); } 
-    100% { transform: translate(120px, -90px) rotate(-10deg) scale(0.95); } 
-}
-@keyframes floatSaturn { 
-    0% { transform: translate(0, 0); } 
-    100% { transform: translate(-150px, -60px) scale(1.1); } 
-}
-@keyframes floatMoon { 
-    0% { transform: translate(0, 0); } 
-    100% { transform: translate(80px, 120px); } 
-}
-@keyframes meteor { 0% { transform: rotate(315deg) translateX(0); opacity: 1; } 100% { transform: rotate(315deg) translateX(-1200px); opacity: 0; } }
+
 /* --- FIXED: Neural Cursor Z-Index --- */
 .cursor-node-main { z-index: 999999; }
 .cursor-node-trail { z-index: 999998; }
