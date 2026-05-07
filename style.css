@@ -504,15 +504,15 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     /* Section & Typography Scaling */
-    section { padding: 60px 5% 40px; min-height: auto; }
+    section { padding: 40px 5% 20px; min-height: auto; }
     
     .contact, .playground, .stats {
-        padding: 60px 5% 40px !important;
+        padding: 40px 5% 20px !important;
     }
     
-    .timeline { margin: 30px auto; }
-    .skills-wrapper { gap: 30px; }
-    .projects-container, .skills-row, .services-container, .edu-container { gap: 20px; }
+    .timeline { margin: 20px auto; }
+    .skills-wrapper { gap: 20px; }
+    .projects-container, .skills-row, .services-container, .edu-container { gap: 15px; }
     
     .home {
         grid-template-columns: 1fr;
@@ -537,10 +537,10 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
         height: 280px;
     }
 
-    .home-info h1 { font-size: 38px; margin-bottom: 15px; }
-    .home-info h3 { font-size: 22px; margin-bottom: 20px; }
-    .home-info p { font-size: 15px; margin-bottom: 30px; }
-    .heading { font-size: 32px; margin-bottom: 30px; }
+    .home-info h1 { font-size: 38px; margin-bottom: 10px; }
+    .home-info h3 { font-size: 22px; margin-bottom: 15px; }
+    .home-info p { font-size: 15px; margin-bottom: 20px; }
+    .heading { font-size: 32px; margin-bottom: 20px; }
 
     /* Timeline Adjustments */
     .timeline::after { left: 30px; }
