@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4 (Proj)'],
                 datasets: [{
                     label: 'SGPA',
-                    data: [8.84, 8.91, 9.18, 9.25],
+                    data: [8.84, 8.91, 9.18, 8.32],
                     borderColor: colors.main,
                     backgroundColor: 'rgba(0, 242, 254, 0.1)',
                     borderWidth: 3,
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: {
-                    y: { min: 8.0, max: 10.0, grid: { color: colors.grid }, ticks: { color: colors.text } },
+                    y: { min: 5.0, max: 10.5, grid: { color: colors.grid }, ticks: { color: colors.text, stepSize: 0.5 } },
                     x: { grid: { display: false }, ticks: { color: colors.text } }
                 }
             }
