@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Evaluations | Data Playground</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .playground {
+            padding: 120px 10% 80px;
+        }
+        .playground-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .playground-header p {
+            color: #94a3b8;
+            font-size: 16px;
+            max-width: 600px;
+            margin: 10px auto 0;
+        }
+        .playground-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        .chart-card {
+            background: var(--glass-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(15px);
+            transition: 0.4s;
+            text-align: center;
+        }
+        .chart-card:hover {
+            border-color: var(--main-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
+        }
+        .chart-card h3 {
+            font-size: 20px;
+            color: var(--main-color);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .chart-box {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .chart-card p {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        .back-link {
+            color: var(--main-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-shadow: 0 0 10px var(--main-color);
+        }
+        @media (max-width: 768px) {
+            .playground { padding: 100px 5% 40px; }
+            .playground-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor-node-main"></div>
+    <div class="cursor-node-trail"></div>
+
+    <header class="header" id="header">
+        <a href="index.html" class="back-link"><i class='bx bx-arrow-back'></i> Back to Portfolio</a>
+        <div class="header-data">
+            <div class="clock-wrap">
+                <i class='bx bx-moon' id="theme-toggle"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="playground">
+        <div class="playground-header">
+            <h2 class="heading">Project <span>Evaluations</span></h2>
+            <p>Detailed metrics and analytics dashboard for each project — click any chart on the homepage to land here.</p>
+        </div>
+        <div class="playground-container">
+            <div class="chart-card">
+                <h3><i class='bx bx-buildings'></i> Smart Campus Care</h3>
+                <div class="chart-box">
+                    <canvas id="campusChart"></canvas>
+                </div>
+                <p>Maintenance request status breakdown — completed, in-progress, pending review, and overdue items.</p>
+            </div>
+            <div class="chart-card">
+                <h3><i class='bx bx-cloud-rain'></i> Weather-app</h3>
+                <div class="chart-box">
+                    <canvas id="weatherChart"></canvas>
+                </div>
+                <p>Multi-parameter environmental radar tracking UV, temperature, humidity, wind, AQI, and precipitation.</p>
+            </div>
+            <div class="chart-card">
+                <h3><i class='bx bx-list-check'></i> ToDo Web App</h3>
+                <div class="chart-box">
+                    <canvas id="todoChart"></canvas>
+                </div>
+                <p>Task distribution across categories — work, personal, shopping, health, and education.</p>
+            </div>
+            <div class="chart-card">
+                <h3><i class='bx bx-shopping-bag'></i> E-Commerce Web App</h3>
+                <div class="chart-box">
+                    <canvas id="ecomChart"></canvas>
+                </div>
+                <p>Revenue breakdown by product category showcasing top-performing segments.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Swagat Mohapatra | Project Evaluation Dashboard</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="data-playground.js"></script>
+</body>
+
+</html>

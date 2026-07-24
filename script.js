@@ -1,7 +1,7 @@
 // --- Utility: Throttle ---
 function throttle(func, limit) {
     let lastFunc, lastRan;
-    return function() {
+    return function () {
         const context = this, args = arguments;
         if (!lastRan) {
             func.apply(context, args);
@@ -114,12 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sr = ScrollReveal({ distance: '60px', duration: 1500, delay: 200, mobile: false });
     sr.reveal('.home-content, .heading, .hero-features', { origin: 'top' });
-    sr.reveal('.project-card, .skill-category-box, .contact form, .timeline-item, .edu-card, .service-card, .chart-card', { 
-        origin: 'bottom', interval: 100 
+    sr.reveal('.project-card, .skill-category-box, .contact form, .timeline-item, .edu-card, .service-card, .chart-card', {
+        origin: 'bottom', interval: 100
     });
 
     // 7. Data Playground Charts
-    let sgpaChart, projectChart;
+    let sgpaChart;
 
     function getThemeColors() {
         const isLight = body.classList.contains('light-mode');
@@ -133,15 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initCharts() {
         const ctxSgpa = document.getElementById('sgpaChart');
-        const ctxProject = document.getElementById('projectChart');
-        if (!ctxSgpa || !ctxProject) return;
+        if (!ctxSgpa) return;
 
         const colors = getThemeColors();
 
         sgpaChart = new Chart(ctxSgpa, {
             type: 'line',
             data: {
-                labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4 (Proj)'],
+                labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
                 datasets: [{
                     label: 'SGPA',
                     data: [8.84, 8.91, 9.18, 8.32],
@@ -165,31 +164,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-
-        projectChart = new Chart(ctxProject, {
-            type: 'doughnut',
-            data: {
-                labels: ['Completed', 'Pending', 'In-Review'],
-                datasets: [{
-                    data: [85, 10, 5],
-                    backgroundColor: [colors.main, colors.accent, 'rgba(255,255,255,0.1)'],
-                    borderWidth: 0,
-                    hoverOffset: 10
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom', labels: { color: colors.text, padding: 20, font: { size: 12 } } }
-                },
-                cutout: '70%'
-            }
-        });
     }
 
-    window.updateChartThemes = function() {
-        if (!sgpaChart || !projectChart) return;
+    window.updateChartThemes = function () {
+        if (!sgpaChart) return;
         const colors = getThemeColors();
         sgpaChart.options.scales.y.ticks.color = colors.text;
         sgpaChart.options.scales.y.grid.color = colors.grid;
@@ -197,16 +175,13 @@ document.addEventListener('DOMContentLoaded', () => {
         sgpaChart.data.datasets[0].borderColor = colors.main;
         sgpaChart.data.datasets[0].pointBackgroundColor = colors.main;
         sgpaChart.update();
-        projectChart.options.plugins.legend.labels.color = colors.text;
-        projectChart.data.datasets[0].backgroundColor = [colors.main, colors.accent, 'rgba(255,255,255,0.1)'];
-        projectChart.update();
     };
-    
+
     setTimeout(initCharts, 500);
 
     // 8. AJAX Contact Form
     if (form) {
-        form.addEventListener("submit", async function(event) {
+        form.addEventListener("submit", async function (event) {
             event.preventDefault();
             if (submitBtn) {
                 submitBtn.innerHTML = "Sending...";
@@ -249,14 +224,14 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener("mousemove", (e) => {
             coords.x = e.clientX;
             coords.y = e.clientY;
-            
+
             // Only spawn if moving significant distance to save performance
             createParticle(e.clientX, e.clientY);
         });
 
         function createParticle(x, y) {
             if (particles.length >= maxParticles) return;
-            
+
             const p = document.createElement("div");
             p.className = "cursor-tail";
             // Match the existing style but make it dynamic
@@ -265,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
             p.style.height = size + "px";
             p.style.transform = `translate3d(${x - size / 2}px, ${y - size / 2}px, 0)`;
             document.body.appendChild(p);
-            
+
             particles.push({
                 el: p,
                 opacity: 0.3,
@@ -277,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const animate = () => {
             // Main Node (Instant)
             mainNode.style.transform = `translate3d(${coords.x - mainNode.offsetWidth / 2}px, ${coords.y - mainNode.offsetHeight / 2}px, 0)`;
-            
+
             // Trail Node (Gentle Lag)
             trailCoords.x += (coords.x - trailCoords.x) * 0.2;
             trailCoords.y += (coords.y - trailCoords.y) * 0.2;
@@ -298,13 +273,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     p.el.style.transform = p.el.style.transform.split(' scale')[0] + ` scale(${p.scale})`;
                 }
             }
-            
+
             requestAnimationFrame(animate);
         };
         animate();
 
         // Hover Effect Logic
-        document.querySelectorAll('a, button, .project-card, .skill-card, .chart-card').forEach(el => {
+        document.querySelectorAll('a, button, .project-card, .skill-card, .chart-card, .eval-card').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 mainNode.classList.add('cursor-hover');
                 trailNode.classList.add('cursor-hover');
@@ -354,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const node = document.createElement('div');
             node.className = 'neural-node';
             const size = Math.random() * 4 + 2;
-            node.style.cssText = `width:${size}px;height:${size}px;position:absolute;background:${i%2===0?'var(--main-color)':'var(--accent-color)'};border-radius:50%;top:${Math.random()*100}%;left:${Math.random()*100}%;opacity:0.4;box-shadow:0 0 10px ${i%2===0?'var(--main-color)':'var(--accent-color)'};`;
+            node.style.cssText = `width:${size}px;height:${size}px;position:absolute;background:${i % 2 === 0 ? 'var(--main-color)' : 'var(--accent-color)'};border-radius:50%;top:${Math.random() * 100}%;left:${Math.random() * 100}%;opacity:0.4;box-shadow:0 0 10px ${i % 2 === 0 ? 'var(--main-color)' : 'var(--accent-color)'};`;
             const duration = Math.random() * 3 + 2;
             const delay = Math.random() * 2;
             node.style.animation = `floatNode ${duration}s ease-in-out ${delay}s infinite alternate`;
