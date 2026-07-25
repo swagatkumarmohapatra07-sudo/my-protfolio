@@ -381,21 +381,36 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
 .timeline-content h4 { font-size: 24px; color: var(--text-color); margin-bottom: 10px; font-weight: 600; }
 .timeline-content p { font-size: 15px; color: #cbd5e1; line-height: 1.6; }
 
-/* --- Education Cards --- */
-.edu-cards { display: flex; flex-direction: column; gap: 24px; max-width: 700px; margin: 0 auto; }
-.edu-card-new { background: var(--glass-bg); border-radius: 16px; border: 1px solid var(--border-color); display: flex; overflow: hidden; transition: 0.4s; position: relative; }
-.edu-card-new:hover { transform: translateY(-4px); border-color: var(--main-color); box-shadow: 0 8px 30px rgba(0, 242, 254, 0.08); }
-.edu-bar { width: 5px; flex-shrink: 0; background: linear-gradient(to bottom, var(--main-color), var(--accent-color)); }
-.edu-body { display: flex; align-items: center; gap: 20px; padding: 24px 28px; width: 100%; }
-.edu-icon { width: 52px; height: 52px; border-radius: 12px; background: rgba(0, 242, 254, 0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(0, 242, 254, 0.15); }
-.edu-icon i { font-size: 24px; color: var(--main-color); }
-.edu-info { flex: 1; min-width: 0; }
-.edu-year { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--main-color); background: rgba(0, 242, 254, 0.1); padding: 2px 12px; border-radius: 4px; border: 1px solid rgba(0, 242, 254, 0.2); display: inline-block; margin-bottom: 8px; font-weight: 600; }
-.edu-info h3 { font-size: 20px; color: var(--text-color); margin-bottom: 4px; font-weight: 600; }
-.edu-info > p { font-size: 14px; color: #94a3b8; line-height: 1.5; }
-.edu-stats { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-.stat-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: #fbbf24; background: rgba(251, 191, 36, 0.1); padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(251, 191, 36, 0.2); font-weight: 600; font-family: 'JetBrains Mono', monospace; }
-.stat-badge i { font-size: 14px; }
+/* --- Education Rows --- */
+.edu-rows { display: flex; flex-direction: column; gap: 0; max-width: 720px; margin: 0 auto; position: relative; }
+
+.edu-row { display: flex; gap: 24px; position: relative; }
+.edu-marker { display: flex; flex-direction: column; align-items: center; width: 48px; flex-shrink: 0; padding-top: 6px; }
+.edu-marker-icon { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--main-color), var(--accent-color)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 2; box-shadow: 0 0 20px rgba(0, 242, 254, 0.25); transition: 0.4s; }
+.edu-row:hover .edu-marker-icon { transform: scale(1.1); box-shadow: 0 0 35px rgba(0, 242, 254, 0.4); }
+.edu-marker-icon i { font-size: 20px; color: #fff; }
+.edu-marker-line { width: 2px; flex: 1; background: linear-gradient(to bottom, var(--main-color), rgba(139, 92, 246, 0.2)); margin: 4px 0; min-height: 30px; }
+.edu-row:last-child .edu-marker-line { display: none; }
+
+.edu-content { flex: 1; background: var(--glass-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px 28px; transition: 0.4s; margin-bottom: 24px; position: relative; overflow: hidden; }
+.edu-content::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--main-color), var(--accent-color)); opacity: 0; transition: 0.4s; }
+.edu-row:hover .edu-content { border-color: var(--main-color); transform: translateX(6px); box-shadow: 0 8px 30px rgba(0, 242, 254, 0.08); }
+.edu-row:hover .edu-content::before { opacity: 1; }
+
+.edu-top { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+.edu-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 3px 10px; border-radius: 4px; }
+.edu-badge.current { background: rgba(16, 185, 129, 0.12); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+.edu-badge.completed { background: rgba(148, 163, 184, 0.1); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.2); }
+.edu-dates { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #94a3b8; font-weight: 500; }
+.edu-content h3 { font-size: 20px; color: var(--text-color); font-weight: 700; margin-bottom: 2px; }
+.edu-institute { font-size: 14px; color: #64748b; line-height: 1.5; }
+.edu-sgpa { margin-top: 14px; display: flex; align-items: center; gap: 12px; }
+.sgpa-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #94a3b8; font-weight: 500; white-space: nowrap; }
+.sgpa-track { position: relative; flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; max-width: 200px; }
+.sgpa-fill { height: 100%; background: linear-gradient(90deg, var(--main-color), #10b981); border-radius: 10px; transition: width 1.5s ease; box-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
+.sgpa-val { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: #10b981; }
+.light-mode .sgpa-track { background: rgba(0,0,0,0.06); }
+.light-mode .sgpa-fill { box-shadow: 0 0 10px rgba(2, 132, 199, 0.2); }
 
 /* --- Skills Wrapper --- */
 .skills-wrapper { display: flex; flex-direction: column; gap: 40px; }

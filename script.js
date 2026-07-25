@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sr = ScrollReveal({ distance: '60px', duration: 1500, delay: 200, mobile: false });
     sr.reveal('.home-content, .heading, .hero-features', { origin: 'top' });
-    sr.reveal('.project-card, .skill-category-box, .contact form, .timeline-item, .edu-card, .service-card, .chart-card, .heatmap-wrap, .coding-card, .blog-card', {
+    sr.reveal('.project-card, .skill-category-box, .contact form, .timeline-item, .edu-row, .service-card, .chart-card, .heatmap-wrap, .coding-card, .blog-card', {
         origin: 'bottom', interval: 100
     });
 
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animate();
 
         // Hover Effect Logic
-        document.querySelectorAll('a, button, .project-card, .skill-card, .chart-card, .eval-card, .blog-card, .coding-card, .edu-card-new').forEach(el => {
+        document.querySelectorAll('a, button, .project-card, .skill-card, .chart-card, .eval-card, .blog-card, .coding-card, .edu-row').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 mainNode.classList.add('cursor-hover');
                 trailNode.classList.add('cursor-hover');
