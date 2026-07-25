@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sr = ScrollReveal({ distance: '60px', duration: 1500, delay: 200, mobile: false });
     sr.reveal('.home-content, .heading, .hero-features', { origin: 'top' });
-    sr.reveal('.project-card, .skill-category-box, .contact form, .timeline-item, .edu-card, .service-card, .chart-card', {
+    sr.reveal('.project-card, .skill-category-box, .contact form, .timeline-item, .edu-card, .service-card, .chart-card, .heatmap-wrap, .coding-card, .blog-card', {
         origin: 'bottom', interval: 100
     });
 
@@ -178,6 +178,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     setTimeout(initCharts, 500);
+
+    // 9. GitHub Live Stats
+    async function fetchGitHubStats() {
+        try {
+            const res = await fetch('https://api.github.com/users/swagatkumarmohapatra07-sudo');
+            const data = await res.json();
+            const reposEl = document.getElementById('gh-repos');
+            const followersEl = document.getElementById('gh-followers');
+            if (reposEl) reposEl.textContent = data.public_repos ?? '4';
+            if (followersEl) followersEl.textContent = data.followers ?? '0';
+        } catch (_) { /* use static fallback */ }
+    }
+    fetchGitHubStats();
 
     // 8. AJAX Contact Form
     if (form) {
@@ -279,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animate();
 
         // Hover Effect Logic
-        document.querySelectorAll('a, button, .project-card, .skill-card, .chart-card, .eval-card').forEach(el => {
+        document.querySelectorAll('a, button, .project-card, .skill-card, .chart-card, .eval-card, .blog-card, .coding-card, .edu-card-new').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 mainNode.classList.add('cursor-hover');
                 trailNode.classList.add('cursor-hover');

@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const weatherCtx = document.getElementById('weatherChart');
         const todoCtx = document.getElementById('todoChart');
         const ecomCtx = document.getElementById('ecomChart');
+        const biCtx = document.getElementById('biChart');
 
         if (campusCtx) {
             charts.push(new Chart(campusCtx, {
@@ -160,6 +161,74 @@ document.addEventListener('DOMContentLoaded', () => {
                         y: {
                             beginAtZero: true,
                             grid: { color: colors.grid },
+                            ticks: { color: colors.text, font: { size: 11 } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: colors.text, font: { size: 11 } }
+                        }
+                    }
+                }
+            }));
+        }
+
+        if (biCtx) {
+            charts.push(new Chart(biCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Data Ingestion (GB)',
+                        data: [45, 62, 78, 94, 115, 148],
+                        borderColor: palette[0],
+                        backgroundColor: palette[0] + '22',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: palette[0],
+                        pointBorderColor: '#fff',
+                        pointRadius: 4,
+                        yAxisID: 'y'
+                    }, {
+                        label: 'Active Dashboards',
+                        data: [8, 14, 19, 23, 28, 35],
+                        borderColor: palette[1],
+                        backgroundColor: palette[1] + '22',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: palette[1],
+                        pointBorderColor: '#fff',
+                        pointRadius: 4,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: colors.text, padding: 20, font: { size: 12 } }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            type: 'linear',
+                            position: 'left',
+                            title: { display: true, text: 'GB', color: colors.text, font: { size: 11 } },
+                            grid: { color: colors.grid },
+                            ticks: { color: colors.text, font: { size: 11 } }
+                        },
+                        y1: {
+                            beginAtZero: true,
+                            type: 'linear',
+                            position: 'right',
+                            title: { display: true, text: 'Dashboards', color: colors.text, font: { size: 11 } },
+                            grid: { display: false },
                             ticks: { color: colors.text, font: { size: 11 } }
                         },
                         x: {
