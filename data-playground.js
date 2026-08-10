@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const todoCtx = document.getElementById('todoChart');
         const ecomCtx = document.getElementById('ecomChart');
         const biCtx = document.getElementById('biChart');
+        const waCtx = document.getElementById('waChart');
 
         if (campusCtx) {
             charts.push(new Chart(campusCtx, {
@@ -229,6 +230,41 @@ document.addEventListener('DOMContentLoaded', () => {
                             position: 'right',
                             title: { display: true, text: 'Dashboards', color: colors.text, font: { size: 11 } },
                             grid: { display: false },
+                            ticks: { color: colors.text, font: { size: 11 } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: colors.text, font: { size: 11 } }
+                        }
+                    }
+                }
+            }));
+        }
+
+        if (waCtx) {
+            charts.push(new Chart(waCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Messages Sent', 'Online Users', 'Unread', 'New Chats', 'Peak Hour'],
+                    datasets: [{
+                        label: 'Count',
+                        data: [186, 24, 9, 15, 42],
+                        backgroundColor: palette.slice(0, 5).map(c => c + 'CC'),
+                        borderColor: palette.slice(0, 5),
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: colors.grid },
                             ticks: { color: colors.text, font: { size: 11 } }
                         },
                         x: {
