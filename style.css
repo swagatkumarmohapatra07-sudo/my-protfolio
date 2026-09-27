@@ -700,18 +700,38 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    /* Section & Typography Scaling */
-    section { padding: 40px 5% 20px; min-height: auto; }
-    
-    .contact, .playground, .stats {
-        padding: 40px 5% 20px !important;
+    /* Fixed header must never cover anchored section titles */
+    html {
+        -webkit-text-size-adjust: 100%;
+        scroll-padding-top: 70px;
     }
+
+    img { max-width: 100%; }
+
+    /* Section padding: tighter gutters + room for the fixed header.
+       Specific classes listed so they override their desktop padding. */
+    section, .github-section, .coding-section, .blog-section, .contact, .playground, .stats {
+        padding: 80px 5% 40px;
+    }
+    section { min-height: auto; }
+
     .section-subtitle { font-size: 13px; }
-    
+    .heading { font-size: 32px; margin-bottom: 20px; }
+    .contact .heading { margin-bottom: 30px; }
+
+    /* Fluid grids: tracks never exceed their container => no sideways scroll */
+    .projects-container, .skills-row, .services-container, .blog-grid, .playground-container {
+        grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    }
+    .blog-grid, .playground-container { gap: 18px; }
+    .stats-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .projects-container, .skills-row, .services-container { gap: 15px; }
+
     .timeline { margin: 20px auto; }
     .skills-wrapper { gap: 20px; }
-    .projects-container, .skills-row, .services-container { gap: 15px; }
-    
+    .skill-label { font-size: 17px; margin-bottom: 16px; padding-left: 12px; }
+
+    /* Home / Hero */
     .home {
         grid-template-columns: 1fr;
         text-align: center;
@@ -735,48 +755,178 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
         height: 280px;
     }
 
-    .home-info h1 { font-size: 38px; margin-bottom: 10px; }
-    .home-info h3 { font-size: 22px; margin-bottom: 15px; }
-    .home-info p { font-size: 15px; margin-bottom: 20px; }
-    .heading { font-size: 32px; margin-bottom: 20px; }
+    .profile-card { width: min(420px, 84vw); height: min(420px, 84vw); }
+    .profile-img-box { width: 76%; height: 76%; }
+    .glow-aura { width: 86%; height: 86%; }
+
+    .status-badge { font-size: 12px; padding: 7px 14px; margin-bottom: 18px; }
+    .home-info h1 { font-size: clamp(30px, 8vw, 38px); margin-bottom: 10px; letter-spacing: -0.5px; }
+    .home-info h3 { font-size: clamp(18px, 5vw, 22px); margin-bottom: 15px; }
+    .home-info p { font-size: 15px; margin-bottom: 20px; line-height: 1.7; }
+    .btn-box { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
+    .btn-outline { margin-left: 0; }
+    .scroll-down a { display: inline-flex; font-size: 30px; color: var(--main-color); }
 
     /* Timeline Adjustments */
-    .timeline::after { left: 30px; }
+    .timeline::after { left: 47px; }
     .timeline-item { width: 100%; padding-left: 70px; padding-right: 10px; }
     .timeline-item.left, .timeline-item.right { left: 0; }
     .timeline-item::after, .timeline-item.right::after { left: 18px; }
 
+    /* Header / Navbar */
     body { cursor: auto !important; }
-    header { padding: 15px 5%; background: rgba(4, 8, 20, 0.8); backdrop-filter: blur(15px); }
-    .header-data { display: none; }
-    #menu-icon { display: block; font-size: 2.2rem; }
+    header {
+        padding: 14px 5%;
+        background: rgba(4, 8, 20, 0.8);
+        background: color-mix(in srgb, var(--bg-color) 85%, transparent);
+        backdrop-filter: blur(15px);
+    }
+    header.sticky { padding: 12px 5%; background: rgba(4, 8, 20, 0.92); background: color-mix(in srgb, var(--bg-color) 92%, transparent); }
+    .header-data { display: flex; flex-direction: row; align-items: center; margin-right: 0; gap: 6px; }
+    #dynamic-greeting, #live-clock { display: none; }
+    .clock-wrap { gap: 6px; }
+    #theme-toggle { font-size: 25px; padding: 6px; }
+    #menu-icon { display: block; font-size: 2.2rem; padding: 4px; }
 
     /* Glassmorphic Navbar */
-    .navbar { 
-        position: absolute; top: 100%; left: 0; width: 100%; padding: 1.5rem 5%; 
-        background: rgba(4, 8, 20, 0.9); backdrop-filter: blur(25px); 
-        border-bottom: 1px solid var(--border-color); display: none; 
+    .navbar {
+        position: absolute; top: 100%; left: 0; width: 100%; padding: 0.8rem 5%;
+        background: rgba(4, 8, 20, 0.9);
+        background: color-mix(in srgb, var(--bg-color) 92%, transparent);
+        backdrop-filter: blur(25px);
+        border-bottom: 1px solid var(--border-color); display: none;
+        max-height: calc(100vh - 62px); overflow-y: auto;
         box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
     .navbar.active { display: block; animation: slideDown 0.4s ease forwards; }
-    .navbar a { display: block; font-size: 1.2rem; margin: 1.5rem 0; text-align: center; }
+    .navbar a { display: block; font-size: 1.05rem; margin: 0.75rem 0; text-align: center; padding: 4px 0; }
 
+    /* Cards, charts & content blocks */
+    .project-card, .skill-card, .service-card { padding: 30px 20px; }
+    .stat-box { padding: 26px 12px; }
+    .stat-box i { font-size: 32px; margin-bottom: 10px; }
+    .stat-box h3 { font-size: 34px; }
+    .stat-box p { font-size: 12px; letter-spacing: 0.5px; }
+    .blog-card { padding: 22px 18px; }
+    .blog-card h4 { font-size: 17px; }
+    .chart-card { padding: 24px 16px; }
+    .chart-box { height: 250px; }
+    .eval-card { padding: 30px 20px; }
+    .heatmap-wrap { padding: 20px 14px; }
+    .heatmap-header h3 { font-size: 15px; overflow-wrap: break-word; }
+    .heatmap-stats { gap: 20px; }
+    .heatmap-stat .num { font-size: 24px; }
+    .coding-card { padding: 18px 20px; gap: 12px; }
+    .coding-card i { font-size: 28px; }
+    .timeline-content { padding: 22px 18px; }
+    .timeline-content h4 { font-size: 19px; }
+    .timeline-content p { font-size: 14px; }
+    .edu-row { gap: 14px; }
+    .edu-marker { width: 40px; }
+    .edu-marker-icon { width: 40px; height: 40px; }
+    .edu-content { padding: 18px 16px; }
+    .edu-content h3 { font-size: 17px; }
+    .edu-sgpa { flex-wrap: wrap; gap: 8px; }
+    .sgpa-track { max-width: 100%; }
+    .service-example { font-size: 12px; padding: 10px 12px; }
+
+    /* Marquee, footer & floats */
+    .tech-marquee { padding: 12px 0; }
+    .marquee-content span { font-size: 13px; margin: 0 22px; letter-spacing: 1.5px; }
+    .footer { padding: 30px 16px; font-size: 13px; }
+    .back-to-top { width: 44px; height: 44px; font-size: 22px; bottom: 20px; right: 20px; }
+
+    /* Contact form (16px inputs stop iOS auto-zoom) */
+    .form-grid { gap: 14px; margin-bottom: 14px; }
+    .glass-form { padding: 30px 20px; }
+    .glass-form input, .glass-form textarea { padding: 15px; font-size: 16px; }
+    .glass-form textarea { margin-bottom: 22px; }
 
     /* Social Icons at bottom for Mobile */
-    .social-glass-bar { 
-        position: static; display: flex; flex-direction: row; justify-content: center; gap: 20px; 
+    .social-glass-bar {
+        position: static; display: flex; flex-direction: row; justify-content: center; gap: 20px;
         background: transparent; box-shadow: none; border: none; padding: 0; margin: 0 auto 40px auto;
         transform: none; width: 100%; backdrop-filter: none;
     }
     .social-glass-bar a {
-        background: rgba(255, 255, 255, 0.05); width: 50px; height: 50px; display: flex; 
-        justify-content: center; align-items: center; border-radius: 50%; 
+        background: rgba(255, 255, 255, 0.05); width: 50px; height: 50px; display: flex;
+        justify-content: center; align-items: center; border-radius: 50%;
         border: 1px solid var(--border-color); font-size: 24px; transition: 0.3s;
     }
     .resume-float { display: none !important; } /* Hidden on mobile to avoid clutter */
 
     .cursor-svg, .cursor-node-main, .cursor-node-trail { display: none !important; }
     .home-wrapper { flex-direction: column; gap: 30px; }
+}
+
+/* --- Small Phones (iPhone SE / compact Android) --- */
+@media (max-width: 480px) {
+    section, .github-section, .coding-section, .blog-section, .contact, .playground, .stats {
+        padding: 70px 4% 35px;
+    }
+    .heading { font-size: 27px; }
+    .section-subtitle { font-size: 12px; }
+
+    .home { gap: 1.5rem; }
+    .profile-card { width: min(420px, 88vw); height: min(420px, 88vw); }
+    .home-info h1 { font-size: clamp(26px, 7.6vw, 32px); }
+    .home-info h3 { font-size: clamp(16px, 4.6vw, 19px); }
+    .home-info p { font-size: 14px; }
+    .status-badge { font-size: 11px; padding: 6px 12px; gap: 8px; }
+    .btn { padding: 11px 20px; font-size: 13px; }
+
+    .stat-box { padding: 20px 10px; }
+    .stat-box h3 { font-size: 28px; }
+    .stat-box p { font-size: 11px; }
+    .project-card, .skill-card, .service-card { padding: 26px 16px; }
+    .glow-btn { padding: 9px 16px; font-size: 12px; letter-spacing: 0.5px; }
+    .project-links { gap: 8px; }
+    .blog-card { padding: 20px 16px; }
+    .chart-card { padding: 22px 14px; }
+    .chart-box { height: 230px; }
+    .eval-card { padding: 26px 16px; }
+    .heatmap-wrap { padding: 16px 12px; }
+    .heatmap-header h3 { font-size: 14px; }
+    .heatmap-stat .num { font-size: 22px; }
+    .coding-card { flex-direction: column; text-align: center; gap: 10px; padding: 20px 16px; }
+    .coding-card .info { text-align: center; }
+    .timeline-content { padding: 18px 14px; }
+    .timeline-content h4 { font-size: 17px; }
+    .timeline-item { padding-left: 62px; padding-right: 6px; }
+    .edu-row { gap: 10px; }
+    .edu-marker { width: 36px; }
+    .edu-marker-icon { width: 36px; height: 36px; }
+    .edu-content { padding: 16px 14px; }
+    .edu-content h3 { font-size: 16px; }
+    .service-example { font-size: 12px; padding: 10px; gap: 8px; }
+    .glass-form { padding: 24px 16px; }
+    .navbar { padding: 0.6rem 5%; }
+    .navbar a { font-size: 1rem; margin: 0.7rem 0; }
+    .marquee-content span { font-size: 12px; margin: 0 16px; letter-spacing: 1px; }
+    .footer { padding: 24px 12px; font-size: 12px; }
+    .social-glass-bar { gap: 14px; margin-bottom: 30px; }
+    .social-glass-bar a { width: 46px; height: 46px; font-size: 22px; }
+}
+
+/* --- Tablets / Small Laptops (nav stays desktop-style, hero scales down) --- */
+@media (min-width: 769px) and (max-width: 1100px) {
+    header { padding: 16px 4%; }
+    header.sticky { padding: 13px 4%; }
+    section, .github-section, .coding-section, .blog-section, .contact, .playground, .stats {
+        padding: 85px 5% 50px;
+    }
+
+    #dynamic-greeting, #live-clock { display: none; }
+    .header-data { margin-right: 6px; }
+    .navbar a { margin-left: 10px; font-size: 13px; }
+
+    .home { gap: 2.5rem; }
+    .profile-card { width: min(420px, 34vw); height: min(420px, 34vw); }
+    .profile-img-box { width: 76%; height: 76%; }
+    .glow-aura { width: 86%; height: 86%; }
+    .home-info h1 { font-size: clamp(42px, 5.4vw, 68px); }
+    .home-info h3 { font-size: clamp(22px, 3vw, 32px); }
+    .glass-form { padding: 40px; }
 }
 
 @keyframes slideDown {
