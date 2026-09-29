@@ -1285,15 +1285,16 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
 
 
 /* =========================================================================
-   PROJECT CARDS — unique accent gradient + shape per card (9 cards)
+   PROJECT CARDS ï¿½ unique accent gradient + shape per card (9 cards)
    ========================================================================= */
 .projects-container .project-card {
     --ca: #00f2fe;
     --cb: #3b82f6;
     --ca-ink: var(--ca);
+    --cb-ink: var(--cb);
     position: relative;
     padding: 30px 24px;
-    border-radius: 28px;
+    border-radius: 22px;
     border: 1px solid color-mix(in srgb, var(--ca) 32%, transparent);
     border-bottom: 3px solid color-mix(in srgb, var(--ca) 60%, transparent);
     background-color: var(--glass-bg);
@@ -1320,16 +1321,16 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
     box-shadow: 0 18px 44px color-mix(in srgb, var(--ca) 26%, transparent);
 }
 
-/* --- Per-card accent color + shape --- */
-.projects-container .project-card:nth-child(1) { --ca: #00f2fe; --cb: #3b82f6; border-radius: 28px; }
-.projects-container .project-card:nth-child(2) { --ca: #8b5cf6; --cb: #d946ef; border-radius: 46px 10px 46px 10px; }
-.projects-container .project-card:nth-child(3) { --ca: #f59e0b; --cb: #f97316; border-radius: 60px 60px 18px 18px; }
-.projects-container .project-card:nth-child(4) { --ca: #38bdf8; --cb: #6366f1; border-radius: 10px 46px 10px 46px; }
-.projects-container .project-card:nth-child(5) { --ca: #ec4899; --cb: #f43f5e; border-radius: 18px 18px 60px 60px; }
-.projects-container .project-card:nth-child(6) { --ca: #10b981; --cb: #a3e635; border-radius: 34px 34px 34px 4px; }
-.projects-container .project-card:nth-child(7) { --ca: #22c55e; --cb: #0ea5e9; border-radius: 6px 34px 6px 34px; }
-.projects-container .project-card:nth-child(8) { --ca: #2dd4bf; --cb: #0ea5e9; border-radius: 44px 44px 44px 10px; }
-.projects-container .project-card:nth-child(9) { --ca: #f472b6; --cb: #c084fc; border-radius: 16px 46px 16px 46px; }
+/* --- Per-card accent color (shape stays the same on every card) --- */
+.projects-container .project-card:nth-child(1) { --ca: #00f2fe; --cb: #3b82f6; }
+.projects-container .project-card:nth-child(2) { --ca: #8b5cf6; --cb: #d946ef; }
+.projects-container .project-card:nth-child(3) { --ca: #f59e0b; --cb: #f97316; }
+.projects-container .project-card:nth-child(4) { --ca: #38bdf8; --cb: #6366f1; }
+.projects-container .project-card:nth-child(5) { --ca: #ec4899; --cb: #f43f5e; }
+.projects-container .project-card:nth-child(6) { --ca: #10b981; --cb: #a3e635; }
+.projects-container .project-card:nth-child(7) { --ca: #22c55e; --cb: #0ea5e9; }
+.projects-container .project-card:nth-child(8) { --ca: #2dd4bf; --cb: #0ea5e9; }
+.projects-container .project-card:nth-child(9) { --ca: #f472b6; --cb: #c084fc; }
 
 /* --- Icon tile (mirrors the card shape) --- */
 .projects-container .project-icon {
