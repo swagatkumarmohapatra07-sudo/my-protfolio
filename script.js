@@ -107,15 +107,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. Typings & Reveal
     if (typingText) {
         new Typed('.typing-text', {
-            strings: ['Data Analyst .', 'Full-Stack Web Developer .', 'Problem Solver .', 'Quick learner .'],
+            strings: ['Full-Stack Developer .', 'Python Developer .', 'Data Analyst .', 'Data Science Enthusiast .', 'Problem Solver .'],
             typeSpeed: 100, backSpeed: 60, loop: true
         });
     }
 
     const sr = ScrollReveal({ distance: '60px', duration: 1500, delay: 200, mobile: false });
-    sr.reveal('.home-content, .heading, .hero-features', { origin: 'top' });
+    sr.reveal('.home-content, .heading, .hero-features, .hero-highlights', { origin: 'top' });
     sr.reveal('.project-card, .skill-category-box, .contact form, .timeline-item, .edu-row, .service-card, .chart-card, .heatmap-wrap, .coding-card, .blog-card', {
         origin: 'bottom', interval: 100
+    });
+
+    // 6b. Project cards: "See more" expander
+    document.querySelectorAll('.see-more').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const card = btn.closest('.project-card');
+            if (!card) return;
+            const open = card.classList.toggle('expanded');
+            btn.innerHTML = (open ? 'See less' : 'See more') + ' <i class=\'bx bx-chevron-down\'></i>';
+        });
     });
 
     // 7. Data Playground Charts
