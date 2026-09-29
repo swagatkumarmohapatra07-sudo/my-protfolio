@@ -1283,3 +1283,162 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
 
 
 
+
+/* =========================================================================
+   PROJECT CARDS — unique accent gradient + shape per card (9 cards)
+   ========================================================================= */
+.projects-container .project-card {
+    --ca: #00f2fe;
+    --cb: #3b82f6;
+    --ca-ink: var(--ca);
+    position: relative;
+    padding: 30px 24px;
+    border-radius: 28px;
+    border: 1px solid color-mix(in srgb, var(--ca) 32%, transparent);
+    border-bottom: 3px solid color-mix(in srgb, var(--ca) 60%, transparent);
+    background-color: var(--glass-bg);
+    background-image:
+        radial-gradient(130% 80% at 50% -10%, color-mix(in srgb, var(--ca) 20%, transparent), transparent 62%),
+        linear-gradient(165deg, color-mix(in srgb, var(--ca) 12%, transparent), color-mix(in srgb, var(--cb) 7%, transparent) 55%, transparent 100%);
+    box-shadow: 0 12px 34px color-mix(in srgb, var(--ca) 10%, transparent);
+}
+
+.projects-container .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--ca), var(--cb));
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.projects-container .project-card:hover {
+    transform: translateY(-10px);
+    border-color: color-mix(in srgb, var(--ca) 75%, transparent);
+    border-bottom-color: var(--ca);
+    box-shadow: 0 18px 44px color-mix(in srgb, var(--ca) 26%, transparent);
+}
+
+/* --- Per-card accent color + shape --- */
+.projects-container .project-card:nth-child(1) { --ca: #00f2fe; --cb: #3b82f6; border-radius: 28px; }
+.projects-container .project-card:nth-child(2) { --ca: #8b5cf6; --cb: #d946ef; border-radius: 46px 10px 46px 10px; }
+.projects-container .project-card:nth-child(3) { --ca: #f59e0b; --cb: #f97316; border-radius: 60px 60px 18px 18px; }
+.projects-container .project-card:nth-child(4) { --ca: #38bdf8; --cb: #6366f1; border-radius: 10px 46px 10px 46px; }
+.projects-container .project-card:nth-child(5) { --ca: #ec4899; --cb: #f43f5e; border-radius: 18px 18px 60px 60px; }
+.projects-container .project-card:nth-child(6) { --ca: #10b981; --cb: #a3e635; border-radius: 34px 34px 34px 4px; }
+.projects-container .project-card:nth-child(7) { --ca: #22c55e; --cb: #0ea5e9; border-radius: 6px 34px 6px 34px; }
+.projects-container .project-card:nth-child(8) { --ca: #2dd4bf; --cb: #0ea5e9; border-radius: 44px 44px 44px 10px; }
+.projects-container .project-card:nth-child(9) { --ca: #f472b6; --cb: #c084fc; border-radius: 16px 46px 16px 46px; }
+
+/* --- Icon tile (mirrors the card shape) --- */
+.projects-container .project-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--ca) 72%, #0b1220), color-mix(in srgb, var(--cb) 72%, #0b1220));
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--ca) 40%, transparent);
+}
+
+.projects-container .project-icon i { font-size: 26px; color: #fff; }
+
+/* --- Card title + role chip --- */
+.projects-container .project-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: 0.3px;
+    margin: 2px 0 6px;
+}
+
+.projects-container .project-card .project-role {
+    color: var(--ca-ink);
+    background: color-mix(in srgb, var(--ca) 10%, transparent);
+    border-color: color-mix(in srgb, var(--ca) 35%, transparent);
+}
+
+/* --- Featured badge (follows card accent) --- */
+.projects-container .project-card .featured-badge {
+    color: var(--ca-ink);
+    background: color-mix(in srgb, var(--ca) 14%, transparent);
+    border-color: color-mix(in srgb, var(--ca) 70%, transparent);
+}
+.projects-container .project-card:nth-child(8) .featured-badge { top: 16px; right: 16px; }
+
+/* --- Expanded content tinted by the card accent --- */
+.projects-container .project-card .brief-item { border-left-color: var(--ca); }
+.projects-container .project-card .brief-item span { color: var(--ca-ink); }
+.projects-container .project-card .project-features li::before { color: var(--ca-ink); }
+
+.projects-container .project-card .project-flow {
+    background: color-mix(in srgb, var(--ca) 6%, transparent);
+    border-color: color-mix(in srgb, var(--ca) 35%, transparent);
+}
+.projects-container .project-card .flow-step { border-color: color-mix(in srgb, var(--ca) 28%, transparent); }
+.projects-container .project-card .flow-step i { color: var(--ca-ink); }
+.projects-container .project-card .project-flow .flow-arrow { color: var(--ca-ink); }
+.projects-container .project-card .flow-step:hover {
+    border-color: var(--ca);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--ca) 22%, transparent);
+}
+
+/* --- Buttons tinted by the card accent --- */
+.projects-container .project-card .glow-btn {
+    border-color: color-mix(in srgb, var(--ca) 70%, transparent);
+    color: var(--ca-ink);
+}
+.projects-container .project-card .glow-btn:hover {
+    background: linear-gradient(135deg, var(--ca), var(--cb));
+    border-color: transparent;
+    color: #05121c;
+    box-shadow: 0 0 18px color-mix(in srgb, var(--ca) 55%, transparent);
+}
+.projects-container .project-card .glow-btn-gh {
+    border-color: color-mix(in srgb, var(--ca) 40%, transparent);
+    color: color-mix(in srgb, var(--text-color) 82%, var(--ca));
+}
+.projects-container .project-card .glow-btn-gh:hover {
+    border-color: var(--ca);
+    color: var(--ca-ink);
+    background: color-mix(in srgb, var(--ca) 10%, transparent);
+}
+
+.projects-container .project-card .see-more {
+    color: var(--ca-ink);
+    border-color: color-mix(in srgb, var(--ca) 45%, transparent);
+}
+.projects-container .project-card .see-more:hover {
+    border-color: var(--ca);
+    background: color-mix(in srgb, var(--ca) 10%, transparent);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--ca) 25%, transparent);
+}
+.projects-container .project-card.expanded .see-more {
+    border-color: var(--ca);
+    background: color-mix(in srgb, var(--ca) 8%, transparent);
+}
+
+/* --- Bright (light) mode: darken accents for readable text --- */
+.light-mode .projects-container .project-card {
+    --ca-ink: color-mix(in srgb, var(--ca) 70%, #0f172a);
+}
+.light-mode .projects-container .project-card:hover {
+    box-shadow: 0 18px 44px color-mix(in srgb, var(--ca) 30%, transparent);
+}
+
+/* --- Responsive tuning --- */
+@media (max-width: 768px) {
+    .projects-container .project-card { padding: 26px 20px; }
+    .projects-container .project-icon { width: 46px; height: 46px; }
+    .projects-container .project-icon i { font-size: 23px; }
+    .projects-container .project-card h4 { font-size: 16px; }
+}
+
+@media (max-width: 480px) {
+    .projects-container .project-card { padding: 24px 16px; }
+    .projects-container .project-icon { width: 42px; height: 42px; }
+    .projects-container .project-icon i { font-size: 21px; }
+}
