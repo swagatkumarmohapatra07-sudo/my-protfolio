@@ -1347,16 +1347,21 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
 
 .projects-container .project-icon i { font-size: 26px; color: #fff; }
 
-/* --- Card title + role chip --- */
+/* --- Card title (unique gradient per card) + balanced gaps around it --- */
 .projects-container .project-card h4 {
     font-size: 17px;
     font-weight: 700;
-    color: var(--text-color);
     letter-spacing: 0.3px;
-    margin: 2px 0 6px;
+    margin: 0 0 10px;
+    background: linear-gradient(135deg, var(--ca-ink), var(--cb-ink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .projects-container .project-card .project-role {
+    margin-bottom: 8px;
     color: var(--ca-ink);
     background: color-mix(in srgb, var(--ca) 10%, transparent);
     border-color: color-mix(in srgb, var(--ca) 35%, transparent);
@@ -1368,7 +1373,6 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
     background: color-mix(in srgb, var(--ca) 14%, transparent);
     border-color: color-mix(in srgb, var(--ca) 70%, transparent);
 }
-.projects-container .project-card:nth-child(8) .featured-badge { top: 16px; right: 16px; }
 
 /* --- Expanded content tinted by the card accent --- */
 .projects-container .project-card .brief-item { border-left-color: var(--ca); }
@@ -1425,6 +1429,7 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
 /* --- Bright (light) mode: darken accents for readable text --- */
 .light-mode .projects-container .project-card {
     --ca-ink: color-mix(in srgb, var(--ca) 70%, #0f172a);
+    --cb-ink: color-mix(in srgb, var(--cb) 70%, #0f172a);
 }
 .light-mode .projects-container .project-card:hover {
     box-shadow: 0 18px 44px color-mix(in srgb, var(--ca) 30%, transparent);
