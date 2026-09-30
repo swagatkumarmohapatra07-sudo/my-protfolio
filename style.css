@@ -1448,3 +1448,770 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
     .projects-container .project-icon { width: 42px; height: 42px; }
     .projects-container .project-icon i { font-size: 21px; }
 }
+
+/* =========================================================================
+   SECTION IDENTITY SYSTEM
+   Every section gets its own accent (--sa), eyebrow, heading treatment,
+   background texture and internal layout so no two sections read the same.
+   ========================================================================= */
+
+/* --- Shared heading (base rule was missing) --- */
+.heading {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: var(--text-color);
+    margin-bottom: 34px;
+}
+.heading span { color: var(--sa, var(--main-color)); }
+
+/* --- Eyebrow chip generated from data-eyebrow --- */
+section[data-eyebrow]::before {
+    content: attr(data-eyebrow);
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: fit-content;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sa, var(--main-color));
+    padding: 7px 16px;
+    border: 1px solid color-mix(in srgb, var(--sa, var(--main-color)) 45%, transparent);
+    border-radius: 50px;
+    background: color-mix(in srgb, var(--sa, var(--main-color)) 10%, transparent);
+    margin-bottom: 18px;
+}
+
+.stats::before, .playground::before, .education::before,
+.github-section::before, .coding-section::before,
+.blog-section::before, .contact::before {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- 01 STATS — full-bleed number band, dividers instead of cards --- */
+.stats {
+    --sa: #10b981;
+    min-height: auto;
+    padding: 50px 6% 54px;
+    text-align: center;
+    background:
+        radial-gradient(70% 130% at 50% 0%, color-mix(in srgb, var(--sa) 9%, transparent), transparent 70%),
+        var(--bg-color);
+    border-top: 1px solid color-mix(in srgb, var(--sa) 28%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--sa) 28%, transparent);
+}
+
+.stats .stats-container {
+    display: flex;
+    justify-content: center;
+    max-width: 1060px;
+    margin: 0 auto;
+}
+
+.stats .stat-box {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    border-left: 1px dashed color-mix(in srgb, var(--sa) 45%, transparent);
+    padding: 10px 22px;
+}
+
+.stats .stat-box:first-child { border-left: none; }
+
+.stats .stat-box:hover {
+    transform: translateY(-4px);
+    border-color: transparent;
+    border-left-color: var(--sa);
+    border-bottom: none;
+    box-shadow: none;
+}
+
+.stats .stat-box i { font-size: 30px; color: var(--sa); margin-bottom: 6px; }
+.stats .stat-box h3 {
+    font-size: clamp(34px, 4vw, 50px);
+    color: var(--sa);
+    text-shadow: none;
+    margin-bottom: 4px;
+}
+.stats .stat-box p {
+    font-size: 11.5px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 2px;
+    color: color-mix(in srgb, var(--text-color) 60%, transparent);
+}
+
+/* --- 02 PROJECTS — left heading + oversized ghost index --- */
+.projects { --sa: #00f2fe; }
+
+.projects::after {
+    content: '02';
+    position: absolute;
+    top: 74px;
+    right: 5%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(80px, 12vw, 170px);
+    font-weight: 700;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--sa) 28%, transparent);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.projects .heading { text-align: left; }
+.projects .projects-container { position: relative; z-index: 1; }
+
+/* --- 03 PLAYGROUND — violet dotted canvas, tilted panels --- */
+.playground {
+    --sa: #8b5cf6;
+    min-height: auto;
+    text-align: center;
+    background-color: var(--second-bg-color);
+    background-image: radial-gradient(color-mix(in srgb, var(--sa) 35%, transparent) 1.2px, transparent 1.2px);
+    background-size: 26px 26px;
+    border-bottom: 1px solid color-mix(in srgb, var(--sa) 22%, transparent);
+}
+
+.playground::before {
+    border-style: dashed;
+    background: color-mix(in srgb, var(--second-bg-color) 75%, transparent);
+}
+
+.playground .heading { text-align: center; }
+.playground .section-subtitle { color: color-mix(in srgb, var(--text-color) 62%, transparent); }
+
+.playground .chart-card,
+.playground .eval-card {
+    background: color-mix(in srgb, var(--bg-color) 82%, transparent);
+    border: 1px dashed color-mix(in srgb, var(--sa) 50%, transparent);
+    border-radius: 26px 8px 26px 8px;
+    transform: rotate(-0.7deg);
+    box-shadow: 0 14px 34px color-mix(in srgb, var(--sa) 12%, transparent);
+}
+
+.playground .eval-card { transform: rotate(0.7deg); }
+
+.playground .chart-card:hover,
+.playground .eval-card:hover {
+    transform: rotate(0deg) translateY(-6px);
+    border-style: solid;
+    border-color: var(--sa);
+    box-shadow: 0 18px 40px color-mix(in srgb, var(--sa) 22%, transparent);
+}
+
+.playground .chart-card h3,
+.playground .eval-card h3 { color: var(--sa); }
+.playground .eval-icon {
+    background: color-mix(in srgb, var(--sa) 14%, transparent);
+    border-color: color-mix(in srgb, var(--sa) 45%, transparent);
+}
+.playground .eval-icon i { color: var(--sa); }
+.playground .eval-card:hover .eval-icon { box-shadow: 0 0 20px color-mix(in srgb, var(--sa) 35%, transparent); }
+.playground .eval-cta { color: var(--sa); }
+
+/* --- 04 JOURNEY — amber hazard stripes + rail heading --- */
+.journey {
+    --sa: #f59e0b;
+    background-image: repeating-linear-gradient(135deg, transparent 0 18px, color-mix(in srgb, var(--sa) 6%, transparent) 18px 19px);
+}
+
+.journey .heading {
+    border-left: 5px solid var(--sa);
+    padding-left: 18px;
+}
+
+.journey .timeline::after {
+    background: linear-gradient(to bottom, var(--sa), color-mix(in srgb, var(--sa) 15%, transparent));
+    box-shadow: 0 0 12px color-mix(in srgb, var(--sa) 50%, transparent);
+}
+.journey .timeline-item::after {
+    border-color: var(--sa);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--sa) 55%, transparent);
+}
+.journey .timeline-item:hover::after {
+    background-color: var(--sa);
+    box-shadow: 0 0 20px var(--sa), 0 0 36px color-mix(in srgb, var(--sa) 50%, transparent);
+}
+.journey .timeline-content {
+    border-color: color-mix(in srgb, var(--sa) 30%, transparent);
+}
+.journey .timeline-item:hover .timeline-content {
+    border-color: var(--sa);
+    box-shadow: 0 0 30px color-mix(in srgb, var(--sa) 22%, transparent);
+}
+.journey .timeline-content .date {
+    color: var(--sa);
+    background: color-mix(in srgb, var(--sa) 12%, transparent);
+    border-color: var(--sa);
+}
+
+/* --- 05 SKILLS — blueprint column grid + console panels --- */
+.skills {
+    --sa: #38bdf8;
+    background-image: linear-gradient(90deg, color-mix(in srgb, var(--sa) 8%, transparent) 1px, transparent 1px);
+    background-size: 96px 100%;
+}
+
+.skills::before { border-radius: 3px; }
+
+.skills .heading {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(22px, 3.2vw, 32px);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.skills .skills-wrapper { gap: 26px; }
+.skills .skills-wrapper .skills-wrapper { gap: 26px; }
+
+.skills .skill-category-box {
+    background: var(--glass-bg);
+    border: 1px solid color-mix(in srgb, var(--sa) 30%, transparent);
+    border-radius: 18px;
+    padding: 22px 24px 26px;
+    backdrop-filter: blur(12px);
+}
+
+.skills .skill-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 0 0 14px;
+    border: none;
+    border-bottom: 1px dashed color-mix(in srgb, var(--sa) 45%, transparent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 2.5px;
+    color: var(--sa);
+}
+.skills .skill-label i { font-size: 18px; }
+
+.skills .skills-row { gap: 16px; }
+
+.skills .skill-card {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 12px 8px;
+}
+.skills .skill-card:hover {
+    transform: translateY(-4px);
+    border: none;
+    box-shadow: none;
+}
+.skills .skill-card p { color: var(--text-color); }
+
+.skills .bar { background: color-mix(in srgb, var(--sa) 14%, transparent); }
+.skills .bar span {
+    background: linear-gradient(90deg, var(--sa), color-mix(in srgb, var(--sa) 55%, #ffffff));
+    box-shadow: 0 0 10px color-mix(in srgb, var(--sa) 55%, transparent);
+}
+
+/* --- 06 EDUCATION — rose certificate rows --- */
+.education {
+    --sa: #f43f5e;
+    text-align: center;
+    background: radial-gradient(85% 60% at 50% 0%, color-mix(in srgb, var(--sa) 10%, transparent), transparent 70%);
+}
+
+.education .heading { text-align: center; }
+.education .edu-rows { text-align: left; max-width: 760px; }
+
+.education .edu-marker-icon {
+    background: linear-gradient(135deg, var(--sa), color-mix(in srgb, var(--sa) 40%, var(--accent-color)));
+    box-shadow: 0 0 20px color-mix(in srgb, var(--sa) 40%, transparent);
+}
+.education .edu-row:hover .edu-marker-icon {
+    transform: scale(1.1);
+    box-shadow: 0 0 34px color-mix(in srgb, var(--sa) 60%, transparent);
+}
+.education .edu-marker-line { background: linear-gradient(to bottom, var(--sa), color-mix(in srgb, var(--sa) 12%, transparent)); }
+
+.education .edu-content {
+    border-left: 3px solid color-mix(in srgb, var(--sa) 55%, transparent);
+    border-radius: 14px;
+}
+.education .edu-content::before { background: linear-gradient(90deg, var(--sa), transparent); }
+.education .edu-row:hover .edu-content {
+    border-color: var(--sa);
+    box-shadow: 0 8px 30px color-mix(in srgb, var(--sa) 15%, transparent);
+}
+
+.education .edu-badge.current {
+    background: color-mix(in srgb, var(--sa) 14%, transparent);
+    color: var(--sa);
+    border-color: color-mix(in srgb, var(--sa) 40%, transparent);
+}
+.education .sgpa-fill {
+    background: linear-gradient(90deg, var(--sa), color-mix(in srgb, var(--sa) 55%, #ffffff));
+    box-shadow: 0 0 10px color-mix(in srgb, var(--sa) 45%, transparent);
+}
+.education .sgpa-val { color: var(--sa); }
+
+/* --- 07 GITHUB — dark terminal window --- */
+.github-section {
+    --sa: #94a3b8;
+    min-height: auto;
+    text-align: center;
+    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--sa) 7%, transparent) 45%, transparent);
+}
+
+.github-section::before {
+    border-radius: 4px;
+    background: #0b0f17;
+    border-color: #232b36;
+    color: #3fb950;
+}
+
+.github-section .heading::before {
+    content: '> ';
+    color: #3fb950;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+}
+.github-section .heading span { color: #3fb950; }
+
+.github-section .heatmap-wrap {
+    background: #0b0f17;
+    border: 1px solid #1f2937;
+    border-radius: 10px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.45);
+}
+.github-section .heatmap-wrap:hover { border-color: #3fb950; }
+
+.github-section .heatmap-header { border-bottom: 1px dashed #334155; padding-bottom: 16px; }
+.github-section .heatmap-header h3 {
+    position: relative;
+    padding-left: 64px;
+    font-size: 15px;
+    color: #e6edf3;
+    font-family: 'JetBrains Mono', monospace;
+}
+.github-section .heatmap-header h3 i { color: #e6edf3; }
+.github-section .heatmap-header h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #ff5f56;
+    box-shadow: 19px 0 0 #ffbd2e, 38px 0 0 #27c93f;
+}
+.github-section .heatmap-header a { color: #3fb950; }
+.github-section .heatmap-wrap img { background: #0b0f17; border: 1px solid #1f2937; }
+.github-section .heatmap-stat .num { color: #3fb950; }
+.github-section .heatmap-stat .label { color: #8b949e; }
+
+/* --- 08 CODING — inverted orange banner --- */
+.coding-section {
+    --sa: #ff8a00;
+    min-height: auto;
+    padding: 66px 10%;
+    text-align: center;
+    background: linear-gradient(115deg, #ffb02e, #ff8a00 55%, #ff5e3a);
+    color: #1a1005;
+}
+
+.coding-section::before {
+    border-radius: 3px;
+    color: #1a1005;
+    background: rgba(255, 255, 255, 0.55);
+    border-color: rgba(26, 16, 5, 0.3);
+}
+
+.coding-section .heading { color: #1a1005; margin-bottom: 10px; }
+.coding-section .heading span { color: #ffffff; }
+.coding-section .section-subtitle { color: rgba(26, 16, 5, 0.72); margin-top: 0; }
+
+.coding-section .coding-grid { margin-top: 34px; gap: 22px; }
+
+.coding-section .coding-card {
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(26, 16, 5, 0.14);
+    border-radius: 16px;
+    color: #1a1005;
+    box-shadow: 0 12px 30px rgba(26, 16, 5, 0.2);
+}
+.coding-section .coding-card:hover {
+    transform: translateY(-6px);
+    border-color: #1a1005;
+    box-shadow: 0 20px 44px rgba(26, 16, 5, 0.3);
+}
+.coding-section .coding-card i {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #12181f;
+    border-radius: 14px;
+    font-size: 26px;
+    flex-shrink: 0;
+}
+.coding-section .coding-card i.bxl-github { color: #f1f5f9 !important; }
+.coding-section .coding-card .info h4 { color: #1a1005; }
+.coding-section .coding-card .info p { color: rgba(26, 16, 5, 0.68); }
+
+/* --- 09 SERVICES — numbered offer ledger --- */
+.services {
+    --sa: #14b8a6;
+    counter-reset: svc;
+    background: radial-gradient(75% 55% at 50% 100%, color-mix(in srgb, var(--sa) 10%, transparent), transparent 70%);
+}
+
+.services .heading { text-align: left; }
+
+.services .service-card {
+    counter-increment: svc;
+    position: relative;
+    align-items: flex-start;
+    text-align: left;
+    overflow: hidden;
+    padding: 34px 26px 30px;
+    border-radius: 6px 22px 22px 6px;
+    border-left: 3px solid color-mix(in srgb, var(--sa) 65%, transparent);
+    background-image: linear-gradient(160deg, color-mix(in srgb, var(--sa) 9%, transparent), transparent 60%);
+}
+
+.services .service-card::after {
+    content: counter(svc, decimal-leading-zero);
+    position: absolute;
+    top: 4px;
+    right: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 1;
+    color: color-mix(in srgb, var(--sa) 25%, transparent);
+    pointer-events: none;
+}
+
+.services .service-card:hover {
+    border-color: color-mix(in srgb, var(--sa) 55%, transparent);
+    border-left-color: var(--sa);
+    border-bottom: 3px solid var(--sa);
+    box-shadow: 0 14px 34px color-mix(in srgb, var(--sa) 18%, transparent);
+}
+
+.services .service-card > i {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    background: color-mix(in srgb, var(--sa) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sa) 45%, transparent);
+    border-radius: 14px;
+    color: var(--sa);
+    font-size: 24px;
+}
+
+.services .service-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-color);
+    text-align: left;
+    margin-bottom: 10px;
+    max-width: 90%;
+}
+
+.services .service-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: left;
+    color: color-mix(in srgb, var(--text-color) 72%, transparent);
+}
+
+.services .service-example {
+    margin-top: auto;
+    padding-top: 14px;
+    border-left: 2px solid var(--sa);
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--sa) 8%, transparent);
+}
+.services .service-example i { color: var(--sa); }
+
+/* --- 10 BLOG — editorial index rows --- */
+.blog-section {
+    --sa: #e879f9;
+    min-height: auto;
+    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--sa) 6%, transparent));
+}
+
+.blog-section .heading {
+    text-align: center;
+    font-size: clamp(24px, 3.2vw, 34px);
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+.blog-section .heading span { font-weight: 800; letter-spacing: 0; }
+
+.blog-section .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 34px;
+    border-top: 1px solid color-mix(in srgb, var(--sa) 40%, transparent);
+}
+
+.blog-section .blog-card {
+    display: grid;
+    grid-template-columns: 170px 1fr 130px;
+    align-items: center;
+    gap: 4px 26px;
+    padding: 26px 16px;
+    border: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--sa) 28%, transparent);
+    border-radius: 0;
+    background: transparent;
+    text-align: left;
+    transition: 0.35s;
+}
+.blog-section .blog-card:hover {
+    transform: none;
+    box-shadow: none;
+    background: color-mix(in srgb, var(--sa) 8%, transparent);
+    padding-left: 26px;
+}
+
+.blog-section .blog-date {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    padding-right: 20px;
+    border-right: 1px dashed color-mix(in srgb, var(--sa) 45%, transparent);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sa);
+}
+.blog-section .blog-card h4 { grid-column: 2; grid-row: 1; margin-bottom: 4px; }
+.blog-section .blog-card p { grid-column: 2; grid-row: 2; margin-bottom: 0; }
+.blog-section .blog-tag {
+    grid-column: 3;
+    grid-row: 1 / span 3;
+    justify-self: end;
+    align-self: center;
+    color: var(--sa);
+    background: color-mix(in srgb, var(--sa) 12%, transparent);
+    border-color: color-mix(in srgb, var(--sa) 40%, transparent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* --- 11 CONTACT — split panel with gradient identity --- */
+.contact {
+    --sa: #22d3ee;
+    text-align: center;
+    background:
+        radial-gradient(70% 65% at 50% 115%, color-mix(in srgb, var(--accent-color) 25%, transparent), transparent 70%),
+        radial-gradient(55% 45% at 12% 0%, color-mix(in srgb, var(--sa) 12%, transparent), transparent 70%);
+}
+
+.contact .heading span {
+    background: linear-gradient(90deg, var(--sa), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.contact-split {
+    width: 100%;
+    max-width: 1060px;
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 26px;
+    align-items: stretch;
+    text-align: left;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 34px 30px;
+    background: var(--glass-bg);
+    border: 1px solid color-mix(in srgb, var(--sa) 35%, transparent);
+    border-radius: 16px;
+    backdrop-filter: blur(14px);
+}
+.contact-info h3 { font-size: 24px; font-weight: 700; line-height: 1.3; color: var(--text-color); }
+.contact-info h3 span { color: var(--sa); }
+.contact-note { font-size: 14px; line-height: 1.7; color: #94a3b8; }
+
+.contact-list { list-style: none; display: flex; flex-direction: column; gap: 15px; margin-top: 4px; }
+.contact-list li { display: flex; align-items: flex-start; gap: 14px; }
+.contact-list li > i {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--sa) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sa) 45%, transparent);
+    border-radius: 12px;
+    color: var(--sa);
+    font-size: 19px;
+}
+.contact-list span {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 3px;
+}
+.contact-list a, .contact-list p { font-size: 14px; color: var(--text-color); word-break: break-word; }
+.contact-list a:hover { color: var(--sa); }
+
+.contact-status {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px dashed color-mix(in srgb, var(--sa) 40%, transparent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--sa);
+}
+
+.contact .glass-form {
+    text-align: left;
+    border-color: color-mix(in srgb, var(--sa) 35%, transparent);
+    max-width: none;
+}
+.contact .glass-form:hover {
+    border-color: var(--sa);
+    box-shadow: 0 18px 44px color-mix(in srgb, var(--sa) 15%, transparent);
+}
+.contact .glass-form input:focus,
+.contact .glass-form textarea:focus {
+    border-color: var(--sa);
+    box-shadow: 0 0 15px color-mix(in srgb, var(--sa) 30%, transparent);
+}
+
+/* --- Compact sections no longer need a full viewport of air --- */
+.stats, .playground, .education, .github-section,
+.coding-section, .blog-section, .services {
+    min-height: auto;
+}
+
+/* =========================================================================
+   SECTION IDENTITY — responsive
+   ========================================================================= */
+@media (max-width: 900px) {
+    .contact-split { grid-template-columns: 1fr; }
+    .projects::after { font-size: clamp(70px, 14vw, 120px); top: 60px; }
+}
+
+@media (max-width: 768px) {
+    /* section paddings: class rules beat the generic `section` media rule */
+    .stats, .playground, .education, .github-section,
+    .coding-section, .blog-section, .services, .journey,
+    .skills, .projects, .contact {
+        padding: 78px 5% 44px;
+    }
+    .stats { padding: 42px 5% 46px; }
+
+    section[data-eyebrow]::before { font-size: 10px; letter-spacing: 2px; padding: 6px 13px; }
+
+    .stats .stats-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .stats .stat-box { border-left: 1px dashed color-mix(in srgb, var(--sa) 45%, transparent); padding: 8px 12px; }
+    .stats .stat-box:nth-child(odd) { border-left: none; }
+    .stats .stat-box h3 { font-size: 32px; }
+
+    .projects::after { top: 52px; right: 3%; }
+
+    .playground .chart-card, .playground .eval-card { border-radius: 20px 8px 20px 8px; }
+
+    .skills .skill-category-box { padding: 18px 16px 22px; }
+    .skills .skill-label { font-size: 12.5px; letter-spacing: 1.5px; }
+
+    .education .edu-content { border-left-width: 3px; }
+
+    .github-section .heatmap-header h3 { padding-left: 0; font-size: 14px; }
+    .github-section .heatmap-header h3::before { display: none; }
+
+    .coding-section { padding: 60px 5%; }
+    .coding-section .coding-card { min-width: 0; width: 100%; }
+
+    .services .service-card::after { font-size: 46px; }
+    .services .service-card h3 { max-width: 75%; }
+
+    .blog-section .blog-card {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 22px 6px;
+    }
+    .blog-section .blog-card:hover { padding-left: 12px; }
+    .blog-section .blog-date {
+        grid-column: 1;
+        grid-row: auto;
+        display: block;
+        padding: 0 0 8px;
+        border-right: none;
+        border-bottom: 1px dashed color-mix(in srgb, var(--sa) 45%, transparent);
+    }
+    .blog-section .blog-card h4,
+    .blog-section .blog-card p,
+    .blog-section .blog-tag { grid-column: 1; grid-row: auto; }
+    .blog-section .blog-tag { justify-self: start; }
+
+    .contact-info { padding: 26px 20px; }
+    .contact-info h3 { font-size: 21px; }
+}
+
+@media (max-width: 480px) {
+    .stats, .playground, .education, .github-section,
+    .coding-section, .blog-section, .services, .journey,
+    .skills, .projects, .contact {
+        padding: 66px 4% 38px;
+    }
+    .stats { padding: 36px 4% 40px; }
+
+    .heading { font-size: 26px; }
+    .skills .heading, .blog-section .heading { font-size: 21px; }
+
+    .stats .stat-box h3 { font-size: 27px; }
+    .projects::after { font-size: 64px; top: 44px; }
+
+    .services .service-card { padding: 26px 18px 24px; }
+    .services .service-card::after { font-size: 38px; top: 2px; right: 12px; }
+    .services .service-card > i { width: 42px; height: 42px; font-size: 21px; }
+
+    .coding-section .coding-card { flex-direction: column; text-align: center; gap: 12px; }
+    .coding-section .coding-card .info { text-align: center; }
+
+    .contact-info { padding: 22px 16px; }
+}
+
+/* --- Bright mode: keep section accents readable --- */
+.light-mode .github-section .heatmap-wrap { box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18); }
+.light-mode .coding-section .coding-card { background: rgba(255, 255, 255, 0.94); }
+.light-mode .stats .stat-box p { color: color-mix(in srgb, var(--text-color) 65%, transparent); }
+.light-mode .contact-note { color: #475569; }
+.light-mode .contact-list span { color: #64748b; }
