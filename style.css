@@ -138,6 +138,7 @@ header.sticky { background: var(--bg-color); backdrop-filter: blur(15px); paddin
 
 .resume-float { position: fixed; bottom: 30px; left: 30px; background: rgba(0, 171, 240, 0.1); padding: 12px 25px; border-radius: 30px; backdrop-filter: blur(15px); border: 1px solid var(--main-color); color: var(--text-color); display: flex; align-items: center; gap: 10px; z-index: 900; transition: 0.3s; }
 .resume-float:hover { background: var(--main-color); color: #fff; box-shadow: 0 0 20px var(--main-color); }
+.resume-float.hide-float { opacity: 0; visibility: hidden; transform: translateY(25px); pointer-events: none; }
 
 /* --- Home / Hero Section (Advanced Two-Column Layout) --- */
 section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
@@ -1554,7 +1555,7 @@ section[data-eyebrow]::before {
 .projects::after {
     content: '02';
     position: absolute;
-    top: 74px;
+    top: 10px;
     right: 5%;
     font-family: 'JetBrains Mono', monospace;
     font-size: clamp(80px, 12vw, 170px);
@@ -2125,7 +2126,7 @@ section[data-eyebrow]::before {
    ========================================================================= */
 @media (max-width: 900px) {
     .contact-split { grid-template-columns: 1fr; }
-    .projects::after { font-size: clamp(70px, 14vw, 120px); top: 60px; }
+    .projects::after { font-size: clamp(70px, 14vw, 120px); top: 6px; }
 }
 
 @media (max-width: 768px) {
@@ -2144,7 +2145,7 @@ section[data-eyebrow]::before {
     .stats .stat-box:nth-child(odd) { border-left: none; }
     .stats .stat-box h3 { font-size: 32px; }
 
-    .projects::after { top: 52px; right: 3%; }
+    .projects::after { top: 6px; right: 3%; }
 
     .playground .chart-card, .playground .eval-card { border-radius: 20px 8px 20px 8px; }
 
@@ -2197,7 +2198,7 @@ section[data-eyebrow]::before {
     .skills .heading, .blog-section .heading { font-size: 21px; }
 
     .stats .stat-box h3 { font-size: 27px; }
-    .projects::after { font-size: 64px; top: 44px; }
+    .projects::after { font-size: 64px; top: 4px; }
 
     .services .service-card { padding: 26px 18px 24px; }
     .services .service-card::after { font-size: 38px; top: 2px; right: 12px; }

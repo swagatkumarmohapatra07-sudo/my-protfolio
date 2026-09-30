@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const header = document.querySelector('header');
     const backToTop = document.querySelector('#backToTop');
+    const resumeFloat = document.querySelector('.resume-float');
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('header nav a');
     const typingText = document.querySelector('.typing-text');
@@ -83,12 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleScroll = throttle(() => {
         if (header) header.classList.toggle('sticky', window.scrollY > 100);
         if (backToTop) backToTop.classList.toggle('active', window.scrollY > 500);
+        if (resumeFloat) resumeFloat.classList.toggle('hide-float', window.scrollY < window.innerHeight * 0.5);
         if (menuIcon && navbar) {
             menuIcon.classList.remove('bx-x');
             navbar.classList.remove('active');
         }
     }, 100);
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
 
     // Navigation Active Link Observer
     const navObserver = new IntersectionObserver((entries) => {
