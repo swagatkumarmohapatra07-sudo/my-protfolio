@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = btn.closest('.project-card');
             if (!card) return;
             const open = card.classList.toggle('expanded');
-            btn.innerHTML = (open ? 'See less' : 'See more') + ' <i class=\'bx bx-chevron-down\'></i>';
+            btn.innerHTML = (open ? 'View less' : 'View more') + ' <i class=\'bx bx-chevron-down\'></i>';
         });
     });
 
