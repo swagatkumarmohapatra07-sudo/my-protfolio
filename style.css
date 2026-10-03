@@ -405,11 +405,11 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
 .edu-dates { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #94a3b8; font-weight: 500; }
 .edu-content h3 { font-size: 20px; color: var(--text-color); font-weight: 700; margin-bottom: 2px; }
 .edu-institute { font-size: 14px; color: #64748b; line-height: 1.5; }
-.edu-sgpa { margin-top: 14px; display: flex; align-items: center; gap: 12px; }
-.sgpa-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #94a3b8; font-weight: 500; white-space: nowrap; }
-.sgpa-track { position: relative; flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; max-width: 200px; }
+.edu-sgpa { margin-top: 14px; display: flex; align-items: center; gap: 10px 12px; flex-wrap: wrap; }
+.sgpa-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #94a3b8; font-weight: 500; white-space: nowrap; flex: 0 0 auto; }
+.sgpa-track { position: relative; flex: 1 1 120px; min-width: 80px; height: 10px; background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; max-width: 220px; }
 .sgpa-fill { height: 100%; background: linear-gradient(90deg, var(--main-color), #10b981); border-radius: 10px; transition: width 1.5s ease; box-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
-.sgpa-val { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: #10b981; }
+.sgpa-val { flex: 0 0 auto; font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: #10b981; line-height: 1; white-space: nowrap; }
 .light-mode .sgpa-track { background: rgba(0,0,0,0.06); }
 .light-mode .sgpa-fill { box-shadow: 0 0 10px rgba(2, 132, 199, 0.2); }
 
@@ -827,8 +827,9 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
     .edu-marker-icon { width: 40px; height: 40px; }
     .edu-content { padding: 18px 16px; }
     .edu-content h3 { font-size: 17px; }
-    .edu-sgpa { flex-wrap: wrap; gap: 8px; }
-    .sgpa-track { max-width: 100%; }
+    .edu-sgpa { flex-wrap: wrap; gap: 8px 10px; margin-top: 12px; }
+    .sgpa-track { max-width: 100%; min-width: 70px; flex-basis: 90px; }
+    .sgpa-val { font-size: 15px; }
     .service-example { font-size: 12px; padding: 10px 12px; }
 
     /* Marquee, footer & floats */
@@ -899,6 +900,17 @@ section { min-height: 100vh; padding: 90px 10% 50px; position: relative; }
     .edu-marker-icon { width: 36px; height: 36px; }
     .edu-content { padding: 16px 14px; }
     .edu-content h3 { font-size: 16px; }
+    .edu-institute { font-size: 13px; }
+    .edu-sgpa {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 7px 10px;
+        margin-top: 12px;
+    }
+    .sgpa-label { grid-column: 1; grid-row: 1; font-size: 11px; }
+    .sgpa-val { grid-column: 2; grid-row: 1; justify-self: end; font-size: 15px; }
+    .sgpa-track { grid-column: 1 / -1; grid-row: 2; max-width: 100%; min-width: 0; height: 9px; }
     .service-example { font-size: 12px; padding: 10px; gap: 8px; }
     .glass-form { padding: 24px 16px; }
     .navbar { padding: 0.6rem 5%; }
